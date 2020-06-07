@@ -1,0 +1,20 @@
+procedure_for_symptoms(radiographic_imaging_procedure, abnormal_involuntary_movements).
+procedure_for_symptoms(radiographic_imaging_procedure, problems_with_movements).
+procedure_for_symptoms(radiographic_imaging_procedure, dizziness).
+procedure_for_symptoms(radiographic_imaging_procedure, disturbance_of_memory).
+
+procedure_for_symptoms(hematologic_tests, abnormal_involuntary_movements).
+procedure_for_symptoms(hematologic_tests, problems_with_movements).
+procedure_for_symptoms(hematologic_tests, dizziness).
+procedure_for_symptoms(hematologic_tests, weakness).
+
+procedure_for_symptoms(complete_blood_count, seizure).
+procedure_for_symptoms(complete_blood_count, abnormal_involuntary_movements).
+procedure_for_symptoms(complete_blood_count, problems_with_movements).
+procedure_for_symptoms(complete_blood_count, headache).
+
+procedure_for_symptoms(x_ray, seizure).
+procedure_for_symptoms(x_ray, headache).
+procedure_for_symptoms(x_ray, dizziness).
+procedure_for_symptoms(x_ray, disturbance_of_memory).
+
