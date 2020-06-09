@@ -13,8 +13,8 @@
                     </mat-list-option>
                 </mat-selection-list>
             </mat-grid-tile>
-            <mat-grid-tile [rowspan]="2">
-                <mat-list style="border: 0;" #simptomi class="scroll-me" [(ngModel)]="odabraniLekovi"
+            <mat-grid-tile [rowspan]="4" style="height: 600;">
+                <mat-list style="border: 0;" #simptomi class="scroll-me" [style.height.vh]="'70'" style="margin-top: 30%;height: 600; border:0px solid gray;" [(ngModel)]="odabraniLekovi"
                     (ngModelChange)="onNgModelChangeLek($event)">
                     <mat-list-item *ngFor="let lek of listaLekova">
                         {{lek.lek}}
@@ -23,5 +23,6 @@
             </mat-grid-tile>
         </mat-grid-list>
         <button mat-raised-button color="primary" (click)="dodajDijagnoze()">Nadji terapiju</button>
+        <button mat-raised-button color="primary" style="margin-left: 10px;" (click)="dodajDijagnozeRBR()">Nadji terapiju RBR</button>
     </mat-card-content>
 </mat-card>

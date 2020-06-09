@@ -54,8 +54,22 @@ export class UnesiDijagnozeDialogComponent implements OnInit {
     );
   }
 
+  dodajDijagnozeRBR(){
+    this.pacijent = this.model;
+    this.upisiSimptomeRBR(this.odbraneDijagnoze, this.pacijent.karton.id).subscribe(
+      data => {
+        this.listaLekova = data;
+        console.log("RBR");
+        console.log(this.listaLekova);
+      }
+    );
+  }
+
   upisiDijagnoze(dijagnoze, id:number):Observable<any>{
     return this.http.post('http://localhost:8089/lek/' + id, dijagnoze);
+  }
+  upisiSimptomeRBR(dijagnoze, id:number):Observable<any>{
+    return this.http.post('http://localhost:8089/lek/rbr/' + id, dijagnoze);
   }
 
   dobaviDijagnoze(): Observable<Dijagnoza[]>{
