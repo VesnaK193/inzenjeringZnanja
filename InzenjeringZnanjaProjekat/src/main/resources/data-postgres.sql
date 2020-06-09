@@ -22,30 +22,30 @@ insert into dijagnoza (name) values ('Delirium');
 insert into dijagnoza (name) values ('Depression');
 insert into dijagnoza (name) values ('Dementia');
 
-insert into lek (name) values ('Beta blockers (Propranolol)');
-insert into lek (name) values ('Anti-seizure medications (Primidone, Gabapentin, Topiramate, Topiramate)');
-insert into lek (name) values ('Tranquilizers (Clonazepam)');
+insert into lek (name) values ('Beta blockers');
+insert into lek (name) values ('Anti-seizure medications');
+insert into lek (name) values ('Tranquilizers');
 insert into lek (name) values ('Botox injections');
 insert into lek (name) values ('Cadibopa-levodopa');--5
 insert into lek (name) values ('Dopamine agonists');
 insert into lek (name) values ('Anticholinergics');
 insert into lek (name) values ('Amantadine');
-insert into lek (name) values ('Opioids (Oxycontin, Roxicdone, Ultram, ConZip, others)');
+insert into lek (name) values ('Opioids');
 insert into lek (name) values ('Muscle relaxants and sleep medications');--10
-insert into lek (name) values ('Drugs affecting calcium channels (Gabapetin, Gabapentin enacarbil, Pregabalin)');
-insert into lek (name) values ('Medications that increase dopamine in the brain (Ropinirole, Rotigotine, Pramipexole)');
+insert into lek (name) values ('Drugs affecting calcium channels');
+insert into lek (name) values ('Medications that increase dopamine in the brain');
 insert into lek (name) values ('Psychotherapy');
-insert into lek (name) values ('Antidepressants (Seratonin)');
+insert into lek (name) values ('Antidepressants');
 insert into lek (name) values ('Detox and withrawal');--15
 insert into lek (name) values ('Supportive environment and counseling');
 insert into lek (name) values ('Educational assistance');
-insert into lek (name) values ('Pain relievers(Ibuprofen, Caffeine Aspirin, Acetaminophen)');
+insert into lek (name) values ('Pain relievers');
 insert into lek (name) values ('Triptans (Rizatriptan)');
-insert into lek (name) values ('Anti-nausea drugs (Metoclopramide,Chlorpromazine, Prochlorperazine)');--20
+insert into lek (name) values ('Anti-nausea drugs');--20
 insert into lek (name) values ('Decongestant nasal sprays');
 insert into lek (name) values ('Cough syrups');
 insert into lek (name) values ('Aspirin desensitization treatment');
-insert into lek (name) values ('Cholinesterase inhibitors (Donepezil, Galantamine, Rivastigmine)');
+insert into lek (name) values ('Cholinesterase inhibitors');
 insert into lek (name) values ('Memantine');--25
 
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,1);
@@ -64,12 +64,12 @@ insert into dijagnoza_lek (dijagnoza_id,lek_id) values (4,13);
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (4,14);
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,15);
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,13);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,16);
+insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,16);--
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (8,16);
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (8,17);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,18);
+insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,18);--
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,19);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,9);
+insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,9);--
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,18);
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,21);
 insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,22);
