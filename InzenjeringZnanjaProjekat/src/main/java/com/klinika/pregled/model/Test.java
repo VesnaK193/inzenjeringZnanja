@@ -23,12 +23,13 @@ public class Test {
 	
 	@Column(name = "name")
 	private String name;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<Simptom> simptomi = new HashSet<>();
 
+	//Obrisati
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Dijagnoza> dijagnoza = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "testovi")
+	private Set<Pregled> pregledi = new HashSet<>();
 	
 	public Test() {
 		super();
@@ -48,14 +49,6 @@ public class Test {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Set<Simptom> getSimptom() {
-		return simptomi;
-	}
-
-	public void setSimptom(Set<Simptom> simptom) {
-		this.simptomi = simptom;
 	}
 	
 }

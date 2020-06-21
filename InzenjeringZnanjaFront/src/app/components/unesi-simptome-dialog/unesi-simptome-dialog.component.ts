@@ -24,9 +24,8 @@ export class UnesiSimptomeDialogComponent implements OnInit {
   listOfTests: Test[] = [];
   selectedTests: Test[] = [];
                       
-  pacijent: Pacijent;
+  pregled: Pregled;
   karton: ZdravstveniKarton = new ZdravstveniKarton();
-  pregled: Pregled = new Pregled();
 
   constructor(public dialogRef: MatDialogRef<UnesiSimptomeDialogComponent>, @Inject(MAT_DIALOG_DATA) public model: any,
                 private http: HttpClient) { }
@@ -40,62 +39,53 @@ export class UnesiSimptomeDialogComponent implements OnInit {
   }
   
   onNgModelChange(event){
-    //console.log(event);
     this.pacijentSimptomi = event;
-    //this.listOfTests = event;
-    //console.log(this.pacijentSimptomi)
   }
+  //Za cuvanje testova u pregled
   onNgModelChangeTest(event){
-    //console.log(event);
-    //this.pacijentSimptomi = event;
-    //console.log(this.pacijentSimptomi)
+    this.selectedTests = event;
   }
 
   dodajSimptomeCBR(){
-    this.pacijent = this.model;
-    this.pregled.simptomi = this.pacijentSimptomi;
-    //this.pacijent.karton.pregledi.push(this.pregled);
-    this.upisiSimptomeCBR(this.pregled, this.pacijent.karton.id).subscribe(
+    this.pregled = this.model;
+    console.log(this.pacijentSimptomi);
+    this.upisiSimptomeCBR(this.pacijentSimptomi, this.pregled.id).subscribe(
       data => {
+        console.log(data);
         this.listOfTests = data;
       }
     );
   }
   dodajSimptomeRBR(){
-    this.pacijent = this.model;
-    this.pregled.simptomi = this.pacijentSimptomi;
-    //this.pacijent.karton.pregledi.push(this.pregled);
-    this.upisiSimptomeRBR(this.pregled, this.pacijent.karton.id).subscribe(
+    this.pregled = this.model;
+    this.upisiSimptomeRBR(this.pacijentSimptomi, this.pregled.id).subscribe(
       data => {
         this.listOfTests = data;
       }
     );
   }
 
-
-  upisiSimptomeCBR(newModel, id:number):Observable<any>{
-    return this.http.post('http://localhost:8089/pregled/' + id, newModel);
+  upisiSimptome(){
+    this.pregled = this.model;
+    console.log(this.selectedTests)
+    this.upisiTestove(this.selectedTests, this.pregled.id).subscribe(
+      data => {
+        console.log('Uspesno sacuvani testovi')
+      }
+    );
   }
 
-  upisiSimptomeRBR(newModel, id:number):Observable<any>{
-    return this.http.post('http://localhost:8089/pregled/rbr/' + id, newModel);
+  upisiTestove(testovi, id:number):Observable<any>{                       //id pregleda
+    return this.http.post('http://localhost:8089/pregled/test/' + id, testovi);
   }
 
-  // odabranSimptom(simpt: Simptom){
-  //   //alert('Odabran simptom! ' + simpt);
-  //   //let temp = this.listOfSymptomsFromDatabase.find(simpt);
-  //   let temp2;
-  //   console.log(simpt.naziv);
-  //   for(let temp of this.listOfSymptomsFromDatabase){
-  //     if(temp.naziv === simpt.naziv){
-  //       //temp2 = temp;
-  //       this.secondListOfSymptoms.push(temp);
-  //       console.log(temp.naziv);
-  //       this.listOfSymptomsFromDatabase.splice(this.listOfSymptomsFromDatabase.indexOf(temp), 1);
-  //     }
-  //   }
-    
-  // }
+  upisiSimptomeCBR(newSimptomi, id:number):Observable<any>{
+    return this.http.post('http://localhost:8089/pregled/cbr/' + id, newSimptomi);
+  }
+
+  upisiSimptomeRBR(newSimptomi, id:number):Observable<any>{
+    return this.http.post('http://localhost:8089/pregled/rbr/' + id, newSimptomi);
+  }
 
   dobaviSimptome(): Observable<Simptom[]>{
     return this.http.get<Simptom[]>('http://localhost:8089/pregled/simptom');

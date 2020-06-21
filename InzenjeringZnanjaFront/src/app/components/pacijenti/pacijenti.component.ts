@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { UnesiDijagnozeDialogComponent } from '../unesi-dijagnoze-dialog/unesi-dijagnoze-dialog.component';
 import { UnesiTestoveDialogComponent } from '../unesi-testove-dialog/unesi-testove-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pacijenti',
@@ -17,9 +18,9 @@ import { UnesiTestoveDialogComponent } from '../unesi-testove-dialog/unesi-testo
 export class PacijentiComponent implements OnInit {
 
   pacijenti: Pacijent[] = [];
-  displayedColumns: string[] = ['id', 'name', 'lastname', 'simptomi','testovi','dijagnoze'];
+  displayedColumns: string[] = ['id', 'name', 'lastname', 'karton'];
   dataSource = new MatTableDataSource<Pacijent>(this.pacijenti);
-  constructor(private http: HttpClient, public dialog: MatDialog) { }
+  constructor(private http: HttpClient, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     let res = this.dobaviPacijente().subscribe(
@@ -30,25 +31,14 @@ export class PacijentiComponent implements OnInit {
       }
     );
   }
-  
-  unesiSimptome(model){
-    //alert('Pritisnut dogadjaj ' + id);
-    const dialogRef = this.dialog.open(UnesiSimptomeDialogComponent, {data: model});
-    dialogRef.afterClosed().subscribe(result => {
-      //alert('Pritisnuto zatvaranje!')
-    });
+
+  onKarton(model){
+    console.log(model);
+    this.router.navigateByUrl('karton/' + model.karton.id);
   }
 
-  unesiDijagnoze(model){
-    const dialogRef = this.dialog.open(UnesiDijagnozeDialogComponent, {data: model});
-    dialogRef.afterClosed().subscribe(result => {
-    });
-  }
-
-  unesiTestove(model){
-    const dialogRef = this.dialog.open(UnesiTestoveDialogComponent, {data: model});
-    dialogRef.afterClosed().subscribe(result => {
-    });
+  onNoviPacijent(){
+    alert('Neko treba da uradi dodavanje pacijenata! :)');
   }
 
   dobaviPacijente(): Observable<Pacijent[]>{

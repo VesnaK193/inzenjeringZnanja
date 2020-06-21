@@ -93,7 +93,7 @@ public class CBRControllerDijagnoza {
 	}*/
 
     @GetMapping("/dijagnoza")
-    public ResponseEntity<?> getDijagnoze(){
+    public void getDijagnoze(){
         CBRTestoviDTO cbr1 = new CBRTestoviDTO();
         cbr1.setId(1L);
         List<String> testovi = new ArrayList<>();
@@ -105,11 +105,11 @@ public class CBRControllerDijagnoza {
 
         CBRModelDijagnoza newModel = new CBRModelDijagnoza();
         newModel.setTestovi(testovi);
-        List<CBRTestDTO> listaDijagnoza = serviceDijagnoza.getDijagnozaMatches(newModel);
-
-        System.out.println("---------------------------");
-        System.out.println(listaDijagnoza);
-
-        return new ResponseEntity<List<CBRTestDTO>>(listaDijagnoza, HttpStatus.OK);
+//        List<CBRTestDTO> listaDijagnoza = serviceDijagnoza.getDijagnozaMatches(newModel);
+//
+//        System.out.println("---------------------------");
+//        System.out.println(listaDijagnoza);
+//
+//        return new ResponseEntity<List<CBRTestDTO>>(listaDijagnoza, HttpStatus.OK);
     }
 }

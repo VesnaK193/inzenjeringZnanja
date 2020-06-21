@@ -2,26 +2,25 @@ package com.klinika.pregled.dto;
 
 public class TestDTO {
 
-	private String test;
+	private String name;
 	
 	public TestDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	public TestDTO(String test) {
+	public TestDTO(String name) {
 		// TODO Auto-generated constructor stub
-		this.test = test;
+		this.name = name;
 	}
-
-	public String getTest() {
-		return test;
+	public String getName() {
+		return name;
 	}
-
-	public void setTest(String test) {
-		this.test = test;
+	public void setName(String name) {
+		this.name = name;
 	}
-
 	@Override
 	public String toString() {
-		return "CBRTestDTO [test=" + test + "]";
+		return "TestDTO [name=" + name + "]";
 	}
+
+	
 }

@@ -60,24 +60,24 @@ public class CBRController {
 		return listam;
 	}
 	
-	@GetMapping("/test")
-	public ResponseEntity<?> getTestove(){
-		CBRSimptomDTO cbr1 = new CBRSimptomDTO();
-		cbr1.setId(1L);
-		List<String> simptomi = new ArrayList<>();
-		simptomi.add("Seizure");
-		simptomi.add("Abnormal involuntary movements");
-//		simptomi.add("alcohol_abuse");
-//		simptomi.add("migraine");
-		cbr1.setSimptomi(simptomi);
-		
-		CBRModelTest newModel = new CBRModelTest();
-		newModel.setSimptomi(simptomi);
-		List<CBRTestDTO> listat = service.getTestMatches(newModel);
-		
-		System.out.println("---------------------------");
-		System.out.println(listat);
-		
-		return new ResponseEntity<List<CBRTestDTO>>(listat, HttpStatus.OK);
-	}
+//	@GetMapping("/test")
+//	public ResponseEntity<?> getTestove(){
+//		CBRSimptomDTO cbr1 = new CBRSimptomDTO();
+//		cbr1.setId(1L);
+//		List<String> simptomi = new ArrayList<>();
+//		simptomi.add("Seizure");
+//		simptomi.add("Abnormal involuntary movements");
+////		simptomi.add("alcohol_abuse");
+////		simptomi.add("migraine");
+//		cbr1.setSimptomi(simptomi);
+//		
+//		CBRModelTest newModel = new CBRModelTest();
+//		newModel.setSimptomi(simptomi);
+//		List<CBRTestDTO> listat = service.getTestMatches(newModel);
+//		
+//		System.out.println("---------------------------");
+//		System.out.println(listat);
+//		
+//		return new ResponseEntity<List<CBRTestDTO>>(listat, HttpStatus.OK);
+//	}
 }

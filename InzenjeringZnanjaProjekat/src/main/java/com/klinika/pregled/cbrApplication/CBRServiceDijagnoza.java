@@ -59,24 +59,24 @@ public class CBRServiceDijagnoza {
 
 
 
-    public List<CBRTestDTO> getDijagnozaMatches(CBRModelDijagnoza cbr){
-        CBRApplicationDijagnoza app = new CBRApplicationDijagnoza(dijagnozaRepo.findAll());
-
-        Collection<RetrievalResult> eval = app.evaluate(cbr);
-        eval = SelectCases.selectTopKRR(eval, 5);
-
-        ArrayList<CBRTestDTO> rezultati = new ArrayList<>();
-        for(RetrievalResult r : eval) {
-            if(r.getEval() > 0) {
-                CBRTestDTO novi = new CBRTestDTO();
-                novi.setTest(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
-//                novi.setDijagnoza(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
-                rezultati.add(novi);
-            }else {
-                System.out.println("Nothing matches!");
-            }
-        }
-        return rezultati;
-    }
+//    public List<CBRTestDTO> getDijagnozaMatches(CBRModelDijagnoza cbr){
+//        CBRApplicationDijagnoza app = new CBRApplicationDijagnoza(dijagnozaRepo.findAll());
+//
+//        Collection<RetrievalResult> eval = app.evaluate(cbr);
+//        eval = SelectCases.selectTopKRR(eval, 5);
+//
+//        ArrayList<CBRTestDTO> rezultati = new ArrayList<>();
+//        for(RetrievalResult r : eval) {
+//            if(r.getEval() > 0) {
+//                CBRTestDTO novi = new CBRTestDTO();
+//                novi.setTest(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
+////                novi.setDijagnoza(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
+//                rezultati.add(novi);
+//            }else {
+//                System.out.println("Nothing matches!");
+//            }
+//        }
+//        return rezultati;
+//    }
 }
 

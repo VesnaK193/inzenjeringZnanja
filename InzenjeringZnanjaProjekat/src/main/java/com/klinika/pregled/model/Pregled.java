@@ -17,8 +17,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "pregled")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pregled {
 
 	@Id
@@ -32,22 +36,25 @@ public class Pregled {
 	@JoinTable(name = "pregled_simptomi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "simptom_id"))
 	private Set<Simptom> simptomi = new HashSet<>();
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private ZdravstveniKarton karton;
 	
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	private Set<Test> testovi = new HashSet<>();
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "pregled_testovi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "test_id"))
+	private Set<Test> testovi = new HashSet<>();
 	
-//	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	private Pacijent pacijent;
+	@Column(name = "brojgodina")
+	private int brojgodina;
 	
-//	public Pacijent getPacijent() {
-//		return pacijent;
-//	}
-//
-//	public void setPacijent(Pacijent pacijent) {
-//		this.pacijent = pacijent;
-//	}
+	@Column(name = "tezina")
+	private int tezina;
+	
+	@Column(name = "pol")
+	private String pol;		//Format : m / f;
+	
+	@Column(name = "rasa")
+	private String rasa; 	//Format : white / black / other;
 
 	public Pregled() {
 		super();
@@ -82,11 +89,45 @@ public class Pregled {
 		this.karton = karton;
 	}
 
-//	public Set<Test> getTestovi() {
-//		return testovi;
-//	}
-//
-//	public void setTestovi(Set<Test> testovi) {
-//		this.testovi = testovi;
-//	}
+	public Set<Test> getTestovi() {
+		return testovi;
+	}
+
+	public void setTestovi(Set<Test> testovi) {
+		this.testovi = testovi;
+	}
+
+	public int getBrojgodina() {
+		return brojgodina;
+	}
+
+	public void setBrojgodina(int brojgodina) {
+		this.brojgodina = brojgodina;
+	}
+
+	public int getTezina() {
+		return tezina;
+	}
+
+	public void setTezina(int tezina) {
+		this.tezina = tezina;
+	}
+
+	public String getPol() {
+		return pol;
+	}
+
+	public void setPol(String pol) {
+		this.pol = pol;
+	}
+
+	public String getRasa() {
+		return rasa;
+	}
+
+	public void setRasa(String rasa) {
+		this.rasa = rasa;
+	}
+	
+	
 }

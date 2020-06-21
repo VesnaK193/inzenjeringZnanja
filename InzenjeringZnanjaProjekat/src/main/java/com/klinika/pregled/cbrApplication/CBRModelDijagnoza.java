@@ -29,11 +29,11 @@ public class CBRModelDijagnoza implements CaseComponent{
         this.testovi = testovi;
     }
     
-    public void setTestovi2(List<CBRTestDTO> testovi) {
-        for(CBRTestDTO test : testovi) {
-        	this.testovi.add(test.getTest());
-        }
-    }
+//    public void setTestovi2(List<CBRTestDTO> testovi) {
+//        for(CBRTestDTO test : testovi) {
+//        	this.testovi.set(test.getTestovi());
+//        }
+//    }
     
     @Override
     public String toString() {

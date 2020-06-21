@@ -3,6 +3,9 @@
   <mat-card-header>
     <h1>Inzenjering znanja 2020</h1>
   </mat-card-header>
+
+  <button mat-raised-button (click)="onNoviPacijent()">Dodaj pregled</button>
+
 <mat-card-content>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="pacijenti">
@@ -26,24 +29,12 @@
       </ng-container>
 
       <!-- Simptomi -->
-      <ng-container matColumnDef="simptomi">
-        <th mat-header-cell *matHeaderCellDef>Simptomi</th>
-        <td mat-cell *matCellDef="let pacijent"> <button mat-raised-button (click)="unesiSimptome(pacijent)">Unesi simptome </button>
+      <ng-container matColumnDef="karton">
+        <th mat-header-cell *matHeaderCellDef>Zdravstveni Karton</th>
+        <td mat-cell *matCellDef="let pacijent"> <button mat-raised-button (click)="onKarton(pacijent)">Prikazi Zdravstveni Karton </button>
         </td>
       </ng-container>
 
-      <!-- Testovi -->
-      <ng-container matColumnDef="testovi">
-        <th mat-header-cell *matHeaderCellDef>Testovi</th>
-        <td mat-cell *matCellDef="let pacijent"> <button mat-raised-button (click)="unesiTestove(pacijent)" >Unesi testove </button> </td> <!--Ovo ubaciti za testove (click)="unesiTetove(pacijent)" -->
-      </ng-container>
-
-      <!-- Dijagnoze -->
-      <ng-container matColumnDef="dijagnoze">
-        <th mat-header-cell *matHeaderCellDef>Dijagnoze</th>
-        <td mat-cell *matCellDef="let pacijent"> <button mat-raised-button (click)="unesiDijagnoze(pacijent)">Unesi dijagnoze </button>
-        </td>
-      </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
