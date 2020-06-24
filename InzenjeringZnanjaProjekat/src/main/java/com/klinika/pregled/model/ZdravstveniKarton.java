@@ -14,9 +14,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "karton")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ZdravstveniKarton {
 
 	@Id
@@ -26,7 +28,7 @@ public class ZdravstveniKarton {
 	@OneToOne//(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Pacijent pacijent;
 	
-	@OneToMany(mappedBy = "karton", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "karton", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Pregled> pregledi = new HashSet<>();
 
 	public Long getId() {
@@ -44,11 +46,11 @@ public class ZdravstveniKarton {
 		this.pacijent = pacijent;
 	}
 
-//	public Set<Pregled> getPregledi() {
-//		return pregledi;
-//	}
-//
-//	public void setPregledi(Set<Pregled> pregledi) {
-//		this.pregledi = pregledi;
-//	}
+	public Set<Pregled> getPregledi() {
+		return pregledi;
+	}
+
+	public void setPregledi(Set<Pregled> pregledi) {
+		this.pregledi = pregledi;
+	}
 }

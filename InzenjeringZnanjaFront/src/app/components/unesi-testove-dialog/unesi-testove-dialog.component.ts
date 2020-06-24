@@ -23,26 +23,27 @@ export class UnesiTestoveDialogComponent implements OnInit {
 
   listaDijagnoza: Dijagnoza[] = [];
   odabraneDijagnoze: Dijagnoza[] = [];
-                      
+
   pacijent: Pacijent;
   karton: ZdravstveniKarton = new ZdravstveniKarton();
 
   constructor(public dialogRef: MatDialogRef<UnesiTestoveDialogComponent>, @Inject(MAT_DIALOG_DATA) public model: any,
-  private http: HttpClient) {
+              private http: HttpClient) {
     this.dobaviTestove().subscribe(
       data => {
         this.listaSvihTestova = data;
       }
     );
-   }
+  }
 
-   ngOnInit() {
+  ngOnInit() {
   }
 
   onNgModelChange(event){
     this.odbraniTestovi = event;
   }
-  onNgModelChangeLek(event){
+
+  onNgModelChangeDijagnoza(event){
   }
 
   dodajTestove(){
@@ -55,11 +56,26 @@ export class UnesiTestoveDialogComponent implements OnInit {
     );
   }
 
-  upisiTestove(pregled, id:number):Observable<any>{
-    return this.http.post('http://localhost:8089/test/' + id, pregled);
+  dodajTestoveRBR(){
+    this.pacijent = this.model;
+    this.upisiTestoveRBR(this.odbraniTestovi, this.pacijent.karton.id).subscribe(
+      data => {
+        this.listaDijagnoza = data;
+        console.log("RBR");
+        console.log(this.listaDijagnoza);
+      }
+    );
+  }
+
+  upisiTestove(testovi, id:number):Observable<any>{
+    return this.http.post('http://localhost:8089/dijagnoza/' + id, testovi);
+  }
+
+  upisiTestoveRBR(testovi, id:number):Observable<any>{
+    return this.http.post('http://localhost:8089/dijagnoza/rbr' + id, testovi);
   }
 
   dobaviTestove(): Observable<Test[]>{
-    return this.http.get<Test[]>('http://localhost:8089/test/getAllTestovi');
+    return this.http.get<Test[]>('http://localhost:8089/dijagnoza/getAllTestovi');
   }
 }

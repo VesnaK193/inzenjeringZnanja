@@ -137,22 +137,22 @@ insert into pregled_simptomi (pregled_id, simptom_id) values (4, 13);
 insert into pregled_simptomi (pregled_id, simptom_id) values (4, 14);
 insert into pregled_simptomi (pregled_id, simptom_id) values (4, 4);
 
-insert into test_simptomi (testovi_id, simptomi_id) values (3, 1);
-insert into test_simptomi (testovi_id, simptomi_id) values (3, 2);
-insert into test_simptomi (testovi_id, simptomi_id) values (3, 3);
-insert into test_simptomi (testovi_id, simptomi_id) values (3, 4);
-insert into test_simptomi (testovi_id, simptomi_id) values (2, 2);
-insert into test_simptomi (testovi_id, simptomi_id) values (2, 3);
-insert into test_simptomi (testovi_id, simptomi_id) values (2, 5);
-insert into test_simptomi (testovi_id, simptomi_id) values (2, 7);
-insert into test_simptomi (testovi_id, simptomi_id) values (1, 2);
-insert into test_simptomi (testovi_id, simptomi_id) values (1, 3);
-insert into test_simptomi (testovi_id, simptomi_id) values (1, 5);
-insert into test_simptomi (testovi_id, simptomi_id) values (1, 6);
-insert into test_simptomi (testovi_id, simptomi_id) values (4, 1);
-insert into test_simptomi (testovi_id, simptomi_id) values (4, 4);
-insert into test_simptomi (testovi_id, simptomi_id) values (4, 6);
-insert into test_simptomi (testovi_id, simptomi_id) values (4, 5);
+insert into pregled_testovi (pregled_id, test_id) values (1, 1);
+insert into pregled_testovi (pregled_id, test_id) values (1, 2);
+insert into pregled_testovi (pregled_id, test_id) values (1, 3);
+insert into pregled_testovi (pregled_id, test_id) values (1, 4);
+insert into pregled_testovi (pregled_id, test_id) values (2, 2);
+insert into pregled_testovi (pregled_id, test_id) values (2, 3);
+insert into pregled_testovi (pregled_id, test_id) values (2, 5);
+insert into pregled_testovi (pregled_id, test_id) values (2, 7);
+insert into pregled_testovi (pregled_id, test_id) values (3, 2);
+insert into pregled_testovi (pregled_id, test_id) values (3, 3);
+insert into pregled_testovi (pregled_id, test_id) values (3, 5);
+insert into pregled_testovi (pregled_id, test_id) values (3, 6);
+insert into pregled_testovi (pregled_id, test_id) values (4, 1);
+insert into pregled_testovi (pregled_id, test_id) values (4, 4);
+insert into pregled_testovi (pregled_id, test_id) values (4, 6);
+insert into pregled_testovi (pregled_id, test_id) values (4, 5);
 
 
 insert into test_dijagnoza (testovi_id, dijagnoza_id) values (3, 1);

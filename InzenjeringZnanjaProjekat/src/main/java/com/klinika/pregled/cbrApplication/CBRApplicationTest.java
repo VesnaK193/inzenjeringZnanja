@@ -3,6 +3,7 @@ package com.klinika.pregled.cbrApplication;
 import java.util.Collection;
 import java.util.List;
 
+import com.klinika.pregled.model.Pregled;
 import com.klinika.pregled.model.Test;
 
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
@@ -20,16 +21,16 @@ import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 public class CBRApplicationTest implements StandardCBRApplication{
 
-	private List<Test> testovi;
+	private List<Pregled> pregledi;
 	
 	Connector _connector;
 	CBRCaseBase _caseBase;
 	static Collection<RetrievalResult> requestResults;
 	NNConfig simConfig;
 	
-	public CBRApplicationTest(List<Test> tests) {
+	public CBRApplicationTest(List<Pregled> pregledi) {
 		// TODO Auto-generated constructor stub
-		this.testovi = tests;
+		this.pregledi = pregledi;
 		try {
             this.configure();
             this.preCycle();
@@ -42,7 +43,7 @@ public class CBRApplicationTest implements StandardCBRApplication{
 	@Override
 	public void configure() throws ExecutionException {
 		// TODO Auto-generated method stub
-		_connector = new CsvConnectorTest(this.testovi);
+		_connector = new CsvConnectorTest(this.pregledi);
 		_caseBase = new LinealCaseBase();
 		
 		simConfig = new NNConfig();

@@ -1,24 +1,36 @@
 package com.klinika.pregled.dto;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class CBRTestDTO {
 
-	private String test;
+	private Set<String> testovi = new HashSet<>();
 	
 	public CBRTestDTO() {
-		// TODO Auto-generated constructor stub
 		super();
 	}
 
-	public String getTest() {
-		return test;
+	
+
+	public Set<String> getTestovi() {
+		return testovi;
 	}
 
-	public void setTest(String test) {
-		this.test = test;
+
+
+	public void setTestovi(Set<String> testovi) {
+		this.testovi = testovi;
 	}
+
+
 
 	@Override
 	public String toString() {
-		return "CBRTestDTO [test=" + test + "]";
+		return "CBRTestDTO [testovi=" + testovi + "]";
 	}
+
+	
 }

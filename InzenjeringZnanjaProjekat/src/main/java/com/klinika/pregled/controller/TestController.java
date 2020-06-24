@@ -17,10 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.klinika.pregled.cbrApplication.CBRModelDijagnoza;
+import com.klinika.pregled.cbrApplication.CBRModelLek;
 import com.klinika.pregled.cbrApplication.CBRModelTest;
 import com.klinika.pregled.cbrApplication.CBRService;
 import com.klinika.pregled.cbrApplication.CBRServiceDijagnoza;
+import com.klinika.pregled.dto.CBRDijagnozaDTO;
+import com.klinika.pregled.dto.CBRLekDTO;
 import com.klinika.pregled.dto.CBRTestDTO;
+import com.klinika.pregled.dto.TestDTO;
+import com.klinika.pregled.model.Dijagnoza;
 import com.klinika.pregled.model.Pacijent;
 import com.klinika.pregled.model.Pregled;
 import com.klinika.pregled.model.Simptom;
@@ -31,6 +36,10 @@ import com.klinika.pregled.repository.PregledRepository;
 import com.klinika.pregled.repository.SimptomRepository;
 import com.klinika.pregled.repository.TestRepository;
 import com.klinika.pregled.repository.ZdravstveniKartonRepository;
+import com.ugos.jiprolog.engine.JIPEngine;
+import com.ugos.jiprolog.engine.JIPQuery;
+import com.ugos.jiprolog.engine.JIPTerm;
+import com.ugos.jiprolog.engine.JIPVariable;
 //
 @RestController
 @CrossOrigin(origins = "*")
@@ -83,4 +92,60 @@ public class TestController {
 		
 		return new ResponseEntity<List<CBRTestDTO>>(listaDijagnoza, HttpStatus.OK);
 	}*/
+    
+    
+    /*@PostMapping("/{id}")
+	public ResponseEntity<?> nadjiDijagnozu(@RequestBody Set<Test> testovi, @PathVariable("id") Long id){
+		List<String> cbrTestovi = new ArrayList<String>();
+		for(Test t : testovi) {
+			cbrTestovi.add(t.getName());
+		}
+		CBRModelTest newDijagnozaModel = new CBRModelTest();
+		newDijagnozaModel.setSimptomi(cbrTestovi);
+		List<CBRTestDTO> listaPogodnih = CBRService.getTestMatches(newDijagnozaModel);
+		return new ResponseEntity<List<CBRTestDTO>>(listaPogodnih, HttpStatus.OK);
+		
+	}*/
+    
+    @PostMapping("/rbr/{id}")
+	public ResponseEntity<?> findDijagnoze(@RequestBody Test test, @PathVariable("id") Long id){
+		Set<String> nazivi = new HashSet<>();
+		List<TestDTO> dijagnoze = new ArrayList<>();
+		
+		JIPEngine engine = new JIPEngine();
+    	engine.consultFile("data/program.pl");
+    	
+    	ZdravstveniKarton karton = zdrRepo.getOne(id);
+		Test newT = new Test();
+		Set<Simptom> newS = new HashSet<>();
+		Set<Simptom> simptomi = new HashSet<>();  //test.getSimptomi();
+		
+		for(Simptom sim : simptomi) {
+			String upit = sim.getName();
+			upit = upit.replace(" ", "_");
+	    	upit = upit.toLowerCase();
+	    	
+	    	JIPQuery query = engine.openSynchronousQuery("procedure_for_symptoms(X," + upit +  ")");
+	    	
+	    	JIPTerm solution;
+			while ( (solution = query.nextSolution()) != null) {
+				System.out.println("solution: " + solution);
+				
+				for (JIPVariable var: solution.getVariables()) {
+					System.out.println(var.getName() + "=" + var.getValue());
+					
+					String result = var.getValue().toString();
+					result = result.replace("_", " ");
+					
+					result = result.substring(0, 1).toUpperCase() + result.substring(1).toLowerCase();
+					if(!nazivi.contains(result)) {
+						dijagnoze.add(new TestDTO(result));
+						nazivi.add(result);
+					}
+				}
+			}
+		}
+		
+		return new ResponseEntity<List<TestDTO>>(dijagnoze, HttpStatus.OK);
+	}
 }

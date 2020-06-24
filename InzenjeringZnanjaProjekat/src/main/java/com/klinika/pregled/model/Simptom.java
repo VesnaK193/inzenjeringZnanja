@@ -26,9 +26,6 @@ public class Simptom {
 	
 	@ManyToMany(mappedBy = "simptomi")
 	private Set<Pregled> pregledi = new HashSet<>();
-	
-	@ManyToMany(mappedBy = "simptomi")
-	private Set<Test> testovi = new HashSet<>();
 
 	public Simptom() {
 		super();
@@ -50,25 +47,9 @@ public class Simptom {
 		this.name = name;
 	}
 	
-//	@JsonIgnore
-//	public Set<Pregled> getPregledi() {
-//		return pregledi;
-//	}
-//	public void setPregledi(Set<Pregled> pregledi) {
-//		this.pregledi = pregledi;
-//	}
-	
 	@Override
 	public String toString() {
 		return "Simptom [name=" + name + "]";
-	}
-	
-	@JsonIgnore
-	public Set<Test> getTestovi() {
-		return testovi;
-	}
-	public void setTestovi(Set<Test> testovi) {
-		this.testovi = testovi;
 	}
 	
 }

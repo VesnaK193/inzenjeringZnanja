@@ -20,7 +20,6 @@ import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 @Service
 public class CBRServiceDijagnoza {
 
-    //cbrModelPregled -> cbrModelDijagnoza
 
     @Autowired
     private TestRepository repo;
@@ -53,30 +52,26 @@ public class CBRServiceDijagnoza {
         return rezultati;
     }
 
-    // CBRTestDTO -> CBRDijagnozaDTO --> zapravo je ista klasa koja sadrzi samo String dijagnoza
-    // CBRModelTest -> CBRModelDijagnoza
-    //CBRApplicationTest -> CBRApplicationDijagnoza
 
 
-
-    public List<CBRTestDTO> getDijagnozaMatches(CBRModelDijagnoza cbr){
-        CBRApplicationDijagnoza app = new CBRApplicationDijagnoza(dijagnozaRepo.findAll());
-
-        Collection<RetrievalResult> eval = app.evaluate(cbr);
-        eval = SelectCases.selectTopKRR(eval, 5);
-
-        ArrayList<CBRTestDTO> rezultati = new ArrayList<>();
-        for(RetrievalResult r : eval) {
-            if(r.getEval() > 0) {
-                CBRTestDTO novi = new CBRTestDTO();
-                novi.setTest(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
-//                novi.setDijagnoza(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
-                rezultati.add(novi);
-            }else {
-                System.out.println("Nothing matches!");
-            }
-        }
-        return rezultati;
-    }
+//    public List<CBRTestDTO> getDijagnozaMatches(CBRModelDijagnoza cbr){
+//        CBRApplicationDijagnoza app = new CBRApplicationDijagnoza(dijagnozaRepo.findAll());
+//
+//        Collection<RetrievalResult> eval = app.evaluate(cbr);
+//        eval = SelectCases.selectTopKRR(eval, 5);
+//
+//        ArrayList<CBRTestDTO> rezultati = new ArrayList<>();
+//        for(RetrievalResult r : eval) {
+//            if(r.getEval() > 0) {
+//                CBRTestDTO novi = new CBRTestDTO();
+//                novi.setTest(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
+////                novi.setDijagnoza(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
+//                rezultati.add(novi);
+//            }else {
+//                System.out.println("Nothing matches!");
+//            }
+//        }
+//        return rezultati;
+//    }
 }
 

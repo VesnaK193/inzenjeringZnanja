@@ -3,9 +3,12 @@ package com.klinika.pregled.cbrApplication;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
+import com.klinika.pregled.model.Pregled;
 import com.klinika.pregled.model.Simptom;
 import com.klinika.pregled.model.Test;
 
@@ -16,11 +19,11 @@ import ucm.gaia.jcolibri.exception.InitializingException;
 
 public class CsvConnectorTest implements Connector{
 
-	private List<Test> testovi = new ArrayList<Test>();
+	private List<Pregled> pregledi = new ArrayList<Pregled>();
 	
-	public CsvConnectorTest(List<Test> test) {
+	public CsvConnectorTest(List<Pregled> pregledi) {
 		// TODO Auto-generated constructor stub
-		this.testovi = test;
+		this.pregledi = pregledi;
 	}
 	
 	@Override
@@ -47,10 +50,15 @@ public class CsvConnectorTest implements Connector{
 		LinkedList<CBRCase> cases = new LinkedList<CBRCase>();
 		List<CBRModelTest> modelTestovi = new ArrayList<>();
 		
-		for(Test t : this.testovi) {
+		for(Pregled p : this.pregledi) {
 			CBRModelTest modelTest = new CBRModelTest();
-			modelTest.setTest(t.getName());
-			for(Simptom s : t.getSimptom()) {
+			
+			Set<String> testovi = new HashSet<>();
+			for(Test t : p.getTestovi()) {
+				testovi.add(t.getName());
+			}
+			modelTest.setTestovi(testovi); //setTest(t.getName());
+			for(Simptom s : p.getSimptomi()) {
 				modelTest.getSimptomi().add(s.getName());
 			}
 			CBRCase cbrCase = new CBRCase();
