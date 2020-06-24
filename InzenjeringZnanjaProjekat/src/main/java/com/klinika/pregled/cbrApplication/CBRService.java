@@ -9,16 +9,18 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.klinika.pregled.dto.CBRDijagnozaDTO;
+import com.klinika.pregled.dto.CBRLekDTO;
 import com.klinika.pregled.dto.CBRResponseDTO;
 import com.klinika.pregled.dto.CBRTestDTO;
 import com.klinika.pregled.dto.TestDTO;
-import com.klinika.pregled.dto.CBRLekDTO;
+import com.klinika.pregled.repository.DijagnozaRepository;
+import com.klinika.pregled.repository.LekRepository;
 import com.klinika.pregled.repository.PregledRepository;
 //
 //import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 //import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 import com.klinika.pregled.repository.TestRepository;
-import com.klinika.pregled.repository.LekRepository;
 
 import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
@@ -34,6 +36,9 @@ public class CBRService {
 	
 	@Autowired
 	private LekRepository lekRepository;
+	
+	@Autowired
+	private DijagnozaRepository dijagnozaRepo;
 	
 	public List<CBRResponseDTO> getMatches(CBRModelPregled cbr){
 		CbrApplication app = new CbrApplication(repo.findAll());
@@ -107,6 +112,28 @@ public class CBRService {
 				rezultati.add(novi);
 			}else {
 				System.out.println("Nothing matches!");
+			}
+		}
+		return rezultati;
+	}
+	
+	
+	public List<CBRDijagnozaDTO> getDijagnozaMatches(CBRModelDijagnoza cbr){
+		CBRApplicationDijagnoza app = new CBRApplicationDijagnoza(dijagnozaRepo.findAll());
+		
+		Collection<RetrievalResult> eval = app.evaluate(cbr);
+		eval = SelectCases.selectTopKRR(eval,4);
+		
+		ArrayList<CBRDijagnozaDTO> rezultati = new ArrayList<>();
+		for(RetrievalResult r : eval) {
+			if(r.getEval() > 0) {
+				CBRDijagnozaDTO novi = new CBRDijagnozaDTO();
+				novi.setDijagnoza(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
+				rezultati.add(novi);
+			}else {
+				System.out.println("Nothing matches!");
+				
+				System.out.println("Dijagnoza!");
 			}
 		}
 		return rezultati;

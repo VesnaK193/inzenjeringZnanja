@@ -20,7 +20,6 @@ import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 @Service
 public class CBRServiceDijagnoza {
 
-    //cbrModelPregled -> cbrModelDijagnoza
 
     @Autowired
     private TestRepository repo;
@@ -52,10 +51,6 @@ public class CBRServiceDijagnoza {
 //		}
         return rezultati;
     }
-
-    // CBRTestDTO -> CBRDijagnozaDTO --> zapravo je ista klasa koja sadrzi samo String dijagnoza
-    // CBRModelTest -> CBRModelDijagnoza
-    //CBRApplicationTest -> CBRApplicationDijagnoza
 
 
 
