@@ -94,7 +94,7 @@ public class TestController {
 	}*/
     
     
-    @PostMapping("/{id}")
+    /*@PostMapping("/{id}")
 	public ResponseEntity<?> nadjiDijagnozu(@RequestBody Set<Test> testovi, @PathVariable("id") Long id){
 		List<String> cbrTestovi = new ArrayList<String>();
 		for(Test t : testovi) {
@@ -105,7 +105,7 @@ public class TestController {
 		List<CBRTestDTO> listaPogodnih = CBRService.getTestMatches(newDijagnozaModel);
 		return new ResponseEntity<List<CBRTestDTO>>(listaPogodnih, HttpStatus.OK);
 		
-	}
+	}*/
     
     @PostMapping("/rbr/{id}")
 	public ResponseEntity<?> findDijagnoze(@RequestBody Test test, @PathVariable("id") Long id){
