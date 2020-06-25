@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.klinika.pregled.model.Dijagnoza;
+import com.klinika.pregled.model.Pregled;
 import com.klinika.pregled.model.Test;
 
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
@@ -21,16 +22,18 @@ import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 public class CBRApplicationDijagnoza implements StandardCBRApplication{
 
-    private List<Dijagnoza> dijagnoze;
+//    private List<Dijagnoza> dijagnoze;
+    
+    private List<Pregled> pregledi;
 
     Connector _connector;
     CBRCaseBase _caseBase;
     static Collection<RetrievalResult> requestResults;
     NNConfig simConfig;
 
-    public CBRApplicationDijagnoza(List<Dijagnoza> dijagnoze) {
+    public CBRApplicationDijagnoza(List<Pregled> pregledi) {
         // TODO Auto-generated constructor stub
-        this.dijagnoze = dijagnoze;
+        this.pregledi = pregledi;
         try {
             this.configure();
             this.preCycle();
@@ -43,7 +46,7 @@ public class CBRApplicationDijagnoza implements StandardCBRApplication{
     @Override
     public void configure() throws ExecutionException {
         // TODO Auto-generated method stub
-        _connector = new CsvConnectorDijagnoza(this.dijagnoze);
+        _connector = new CsvConnectorDijagnoza(this.pregledi);
         _caseBase = new LinealCaseBase();
 
         simConfig = new NNConfig();

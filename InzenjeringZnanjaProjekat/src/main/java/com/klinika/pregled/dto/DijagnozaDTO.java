@@ -10,22 +10,28 @@ public class DijagnozaDTO {
 		super();
 	}
 
+	
+	public DijagnozaDTO(String name) {
+		this.name = name;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
+
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public DijagnozaDTO(String name) {
-		super();
-		this.name = name;
-	}
 
 	public String getName() {
 		return name;
 	}
+
+	
 
 	public void setName(String name) {
 		this.name = name;
@@ -33,10 +39,9 @@ public class DijagnozaDTO {
 
 	@Override
 	public String toString() {
-		return "DijagnozaDTO [dijagnoza=" + name + "]";
+		return "DijagnozaDTO [id=" + id + ", name=" + name + "]";
+
 	}
-	
-	
 	
 	
 }

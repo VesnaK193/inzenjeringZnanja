@@ -40,7 +40,7 @@ public class CBRControllerDijagnoza {
 
     @GetMapping
     public List<CBRResponseDijagnozaDTO> getCBRResponse(){
-        Test t = testRepository.findById(3L).get();
+        /*Test t = testRepository.findById(3L).get();
 
         CBRTestoviDTO cbr1 = new CBRTestoviDTO();
         cbr1.setId(1L);
@@ -68,7 +68,8 @@ public class CBRControllerDijagnoza {
 //			System.out.println(listam);
 //			cbrresponse.addAll(listam);
 //		}
-        return listam;
+        return listam;*/
+    	return null;
     }
 
 	/*@GetMapping("/test")

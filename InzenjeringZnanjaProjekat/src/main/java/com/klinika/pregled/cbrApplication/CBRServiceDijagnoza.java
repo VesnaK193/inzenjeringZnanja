@@ -28,7 +28,7 @@ public class CBRServiceDijagnoza {
     private DijagnozaRepository dijagnozaRepo; //pregled -> dijagnoza
 
 
-    public List<CBRResponseDijagnozaDTO> getMatches(CBRModelDijagnoza cbr){
+   /* public List<CBRResponseDijagnozaDTO> getMatches(CBRModelDijagnoza cbr){
         CBRApplicationDijagnoza app = new CBRApplicationDijagnoza(dijagnozaRepo.findAll());
 
         Collection<RetrievalResult> eval = app.evaluate(cbr);
@@ -38,7 +38,7 @@ public class CBRServiceDijagnoza {
         for(RetrievalResult r : eval) {
             if(r.getEval() > 0) {
                 CBRResponseDijagnozaDTO novi = new CBRResponseDijagnozaDTO();
-                novi.setDijagnoza(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());;
+//                novi.setDijagnoza(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoze());;
                 //novi.setId(((CBRModelSimptomPregled)r.get_case().getDescription()).getId());
                 novi.setTestovi(((CBRModelDijagnoza)r.get_case().getDescription()).getTestovi());
                 rezultati.add(novi);
@@ -51,7 +51,7 @@ public class CBRServiceDijagnoza {
 //		}
         return rezultati;
     }
-
+*/
 
 
 //    public List<CBRTestDTO> getDijagnozaMatches(CBRModelDijagnoza cbr){

@@ -29,8 +29,6 @@ public class Pregled {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Dijagnoza dijagnoza;
 	
 	@ManyToMany//(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "pregled_simptomi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "simptom_id"))
@@ -45,24 +43,9 @@ public class Pregled {
 	private Set<Test> testovi = new HashSet<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "pregled_dijagnoze", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "dijagnoza_id"))
+	@JoinTable(name = "pregled_dijagnoza", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "dijagnoza_id"))
 	private Set<Dijagnoza> dijagnoze = new HashSet<>();
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "pregled_lekovi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "lek_id"))
-	private Set<Lek> lekovi = new HashSet<>();
-	
-//	@Column(name = "brojgodina")
-//	private int brojgodina;
-//	
-//	@Column(name = "tezina")
-//	private int tezina;
-//	
-//	@Column(name = "pol")
-//	private String pol;		//Format : m / f;
-//	
-//	@Column(name = "rasa")
-//	private String rasa; 	//Format : white / black / other;
 
 	public Pregled() {
 		super();
@@ -75,12 +58,6 @@ public class Pregled {
 		this.id = id;
 	}
 
-	public Dijagnoza getDijagnoza() {
-		return dijagnoza;
-	}
-	public void setDijagnoza(Dijagnoza dijagnoza) {
-		this.dijagnoza = dijagnoza;
-	}
 
 	public Set<Simptom> getSimptomi() {
 		return simptomi;
@@ -113,6 +90,7 @@ public class Pregled {
 		this.dijagnoze = dijagnoze;
 	}
 
+
 	public Set<Lek> getLekovi() {
 		return lekovi;
 	}
@@ -121,37 +99,6 @@ public class Pregled {
 		this.lekovi = lekovi;
 	}
 
-//	public int getBrojgodina() {
-//		return brojgodina;
-//	}
-//
-//	public void setBrojgodina(int brojgodina) {
-//		this.brojgodina = brojgodina;
-//	}
-//
-//	public int getTezina() {
-//		return tezina;
-//	}
-//
-//	public void setTezina(int tezina) {
-//		this.tezina = tezina;
-//	}
-//
-//	public String getPol() {
-//		return pol;
-//	}
-//
-//	public void setPol(String pol) {
-//		this.pol = pol;
-//	}
-//
-//	public String getRasa() {
-//		return rasa;
-//	}
-//
-//	public void setRasa(String rasa) {
-//		this.rasa = rasa;
-//	}
 	
 	
 }

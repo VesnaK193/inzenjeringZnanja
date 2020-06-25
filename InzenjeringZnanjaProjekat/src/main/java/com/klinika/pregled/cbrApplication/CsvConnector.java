@@ -43,7 +43,7 @@ public class CsvConnector implements Connector{
 
 	@Override
 	public Collection<CBRCase> retrieveAllCases() {
-		// TODO Auto-generated method stub
+		/*// TODO Auto-generated method stub
 		LinkedList<CBRCase> cases = new LinkedList<CBRCase>();
 		List<CBRModelPregled> modeli = new ArrayList<>();
 		List<Pregled> obradjeniPregledi = new ArrayList<>();
@@ -75,7 +75,9 @@ public class CsvConnector implements Connector{
 //			cbrcase.setDescription(m);
 //			cases.add(cbrcase);
 //		}
-		return cases;
+		return cases;*/
+		
+		return null;
 	}
 
 	@Override
