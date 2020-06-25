@@ -1,20 +1,26 @@
 package com.klinika.pregled.dto;
 
+import java.util.Set;
+
 public class CBRDijagnozaDTO {
-	private String dijagnoza;
+	private Set<String> dijagnoze;
 
-	public String getDijagnoza() {
-		return dijagnoza;
-	}
-
-	public void setDijagnoza(String dijagnoza) {
-		this.dijagnoza = dijagnoza;
-	}
-
-	@Override
-	public String toString() {
-		return "CBRDijagnozaDTO [dijagnoza=" + dijagnoza + "]";
+	
+	public CBRDijagnozaDTO() {
 	}
 	
-	
+	public CBRDijagnozaDTO(Set<String> dijagnoze) {
+		super();
+		this.dijagnoze = dijagnoze;
+	}
+
+	public Set<String> getDijagnoze() {
+		return dijagnoze;
+	}
+
+	public void setDijagnoze(Set<String> dijagnoze) {
+		this.dijagnoze = dijagnoze;
+	}
+
+
 }

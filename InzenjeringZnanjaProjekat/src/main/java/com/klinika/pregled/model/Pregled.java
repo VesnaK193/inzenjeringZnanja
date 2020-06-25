@@ -29,8 +29,8 @@ public class Pregled {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Dijagnoza dijagnoza;
+	/*@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Dijagnoza dijagnoza;*/
 	
 	@ManyToMany//(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "pregled_simptomi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "simptom_id"))
@@ -44,7 +44,11 @@ public class Pregled {
 	@JoinTable(name = "pregled_testovi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "test_id"))
 	private Set<Test> testovi = new HashSet<>();
 	
-	@Column(name = "brojgodina")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "pregled_dijagnoza", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "dijagnoza_id"))
+	private Set<Dijagnoza> dijagnoze = new HashSet<>();
+	
+	/*@Column(name = "brojgodina")
 	private int brojgodina;
 	
 	@Column(name = "tezina")
@@ -55,7 +59,7 @@ public class Pregled {
 	
 	@Column(name = "rasa")
 	private String rasa; 	//Format : white / black / other;
-
+*/
 	public Pregled() {
 		super();
 	}
@@ -67,12 +71,12 @@ public class Pregled {
 		this.id = id;
 	}
 
-	public Dijagnoza getDijagnoza() {
+	/*public Dijagnoza getDijagnoza() {
 		return dijagnoza;
 	}
 	public void setDijagnoza(Dijagnoza dijagnoza) {
 		this.dijagnoza = dijagnoza;
-	}
+	}*/
 
 	public Set<Simptom> getSimptomi() {
 		return simptomi;
@@ -97,7 +101,17 @@ public class Pregled {
 		this.testovi = testovi;
 	}
 
-	public int getBrojgodina() {
+	public Set<Dijagnoza> getDijagnoze() {
+		return dijagnoze;
+	}
+
+	public void setDijagnoze(Set<Dijagnoza> dijagnoze) {
+		this.dijagnoze = dijagnoze;
+	}
+	
+	
+
+	/*public int getBrojgodina() {
 		return brojgodina;
 	}
 
@@ -127,7 +141,7 @@ public class Pregled {
 
 	public void setRasa(String rasa) {
 		this.rasa = rasa;
-	}
+	}*/
 	
 	
 }
