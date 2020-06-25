@@ -43,8 +43,12 @@ public class Pregled {
 	private Set<Test> testovi = new HashSet<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "pregled_dijagnoza", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "dijagnoza_id"))
+	@JoinTable(name = "pregled_dijagnoze", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "dijagnoza_id"))
 	private Set<Dijagnoza> dijagnoze = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "pregled_lekovi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "lek_id"))
+	private Set<Lek> lekovi = new HashSet<>();
 	
 
 	public Pregled() {
