@@ -9,14 +9,17 @@ public class DijagnozaDTO {
 	public DijagnozaDTO() {
 		super();
 	}
+
 	
 	public DijagnozaDTO(String name) {
 		this.name = name;
 	}
 
+
 	public Long getId() {
 		return id;
 	}
+
 
 
 	public void setId(Long id) {
@@ -28,15 +31,16 @@ public class DijagnozaDTO {
 		return name;
 	}
 
+	
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
+	} 
 
 	@Override
 	public String toString() {
 		return "DijagnozaDTO [id=" + id + ", name=" + name + "]";
+
 	}
 	
 	

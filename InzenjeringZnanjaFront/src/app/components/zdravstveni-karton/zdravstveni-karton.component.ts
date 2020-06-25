@@ -1,12 +1,12 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UnesiTestoveDialogComponent } from './../unesi-testove-dialog/unesi-testove-dialog.component';
 import { UnesiDijagnozeDialogComponent } from './../unesi-dijagnoze-dialog/unesi-dijagnoze-dialog.component';
 import { UnesiSimptomeDialogComponent } from './../unesi-simptome-dialog/unesi-simptome-dialog.component';
 import { ZdravstveniKarton } from './../../modeli/zdravstveni-karton';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatPaginator } from '@angular/material';
 import { Pregled } from './../../modeli/pregled';
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -18,8 +18,10 @@ export class ZdravstveniKartonComponent implements OnInit {
 
   pregledi: Pregled[] = [];
   displayedColumns: string[] = ['id', 'simptomi','testovi','dijagnoze'];
-  dataSource;
+  dataSource ;
   idKartona;
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private http: HttpClient, private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -28,7 +30,8 @@ export class ZdravstveniKartonComponent implements OnInit {
       data => {
         console.log(data)
         this.pregledi = data.pregledi;
-        this.dataSource = new MatTableDataSource<Pregled>(this.pregledi);
+        this.dataSource = new MatTableDataSource<Pregled>(data.pregledi);
+        this.dataSource.paginator = this.paginator;
       }
     );
   }

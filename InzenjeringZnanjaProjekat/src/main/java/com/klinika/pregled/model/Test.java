@@ -22,11 +22,7 @@ public class Test {
 	private Long id;
 	
 	@Column(name = "name")
-	private String name;
-
-	//Obrisati
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Set<Dijagnoza> dijagnoza = new HashSet<>();
+	private String name; 
 	
 	@ManyToMany(mappedBy = "testovi")
 	private Set<Pregled> pregledi = new HashSet<>();

@@ -1,14 +1,17 @@
 package com.klinika.pregled.cbrApplication;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import ucm.gaia.jcolibri.cbrcore.Attribute;
 import ucm.gaia.jcolibri.cbrcore.CaseComponent;
 
+
 public class CBRModelLek implements CaseComponent{
 	
-	private String lek;
+	private Set<String> lekovi = new HashSet<>();
 	private List<String> dijagnoze = new ArrayList<String>();
 
 	@Override
@@ -21,12 +24,12 @@ public class CBRModelLek implements CaseComponent{
 		super();
 	}
 
-	public String getLek() {
-		return lek;
+	public Set<String> getLekovi() {
+		return lekovi;
 	}
 
-	public void setLek(String lek) {
-		this.lek = lek;
+	public void setLekovi(Set<String> lekovi) {
+		this.lekovi = lekovi;
 	}
 
 	public List<String> getDijagnoze() {
@@ -39,6 +42,6 @@ public class CBRModelLek implements CaseComponent{
 	
 	@Override
 	public String toString() {
-		return "CBRModelLek [lekovi=" + lek + ", dijagnoze=" + dijagnoze + "]";
+		return "CBRModelLek [lekovi=" + lekovi + ", dijagnoze=" + dijagnoze + "]";
 	}
 }

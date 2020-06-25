@@ -22,6 +22,24 @@ insert into dijagnoza (name) values ('Delirium');
 insert into dijagnoza (name) values ('Depression');
 insert into dijagnoza (name) values ('Dementia');
 
+--insert into pregled(dijagnoza_id, karton_id) values (1, 1);
+--insert into pregled(dijagnoza_id, karton_id) values (2, 2);
+--insert into pregled(dijagnoza_id, karton_id) values (3, 3);
+--insert into pregled(dijagnoza_id, karton_id) values (4, 3);
+
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+insert into pregled( karton_id) values ( 1);
+
 insert into lek (name) values ('Beta blockers');
 insert into lek (name) values ('Anti-seizure medications');
 insert into lek (name) values ('Tranquilizers');
@@ -48,39 +66,103 @@ insert into lek (name) values ('Aspirin desensitization treatment');
 insert into lek (name) values ('Cholinesterase inhibitors');
 insert into lek (name) values ('Memantine');--25
 
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,1);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,2);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,3);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,4);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (2,5);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (2,6);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (2,7);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (2,8);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (3,9);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (3,10);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (3,11);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (3,12);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (4,13);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (4,14);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,15);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,13);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,16);--
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (8,16);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (8,17);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,18);--
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,19);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,9);--
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,18);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,21);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,22);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (10,21);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (10,23);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (12,24);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (12,25);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (13,16);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (14,13);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (14,14);
-insert into dijagnoza_lek (dijagnoza_id,lek_id) values (15,13);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,1);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,2);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,3);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (1,4);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (2,5);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (2,6);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (2,7);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (2,8);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (3,9);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (3,10);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (3,11);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (3,12);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (4,13);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (4,14);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,15);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,13);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (6,16);--
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (8,16);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (8,17);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,18);--
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,19);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (7,9);--
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,18);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,21);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (9,22);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (10,21);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (10,23);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (12,24);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (12,25);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (13,16);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (14,13);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (14,14);
+--insert into dijagnoza_lek (dijagnoza_id,lek_id) values (15,13);
+
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 1);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 1);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (3, 1);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (4, 1);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 2);--
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 2);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (3, 2);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (4, 2);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 3);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 3);--
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (3, 3);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (4, 3);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 4);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 4);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 6);--
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 6);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (3, 6);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 8);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (3, 8);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 7);--
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 7);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (3, 7);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 9);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (4, 9);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (3, 9);--
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 10);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 10);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 12);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (2, 12);
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (1, 13);--
+insert into pregled_dijagnoze (pregled_id, dijagnoza_id) values (3, 15);
+
+insert into pregled_lekovi (pregled_id, lek_id) values (1, 1);
+insert into pregled_lekovi (pregled_id, lek_id) values (2, 2);
+insert into pregled_lekovi (pregled_id, lek_id) values (3, 3);
+insert into pregled_lekovi (pregled_id, lek_id) values (4, 4);
+--insert into pregled_lekovi (pregled_id, lek_id) values (1, 5);--
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 6);
+--insert into pregled_lekovi (pregled_id, lek_id) values (3, 7);
+--insert into pregled_lekovi (pregled_id, lek_id) values (4, 8);
+--insert into pregled_lekovi (pregled_id, lek_id) values (1, 9);
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 10);--
+--insert into pregled_lekovi (pregled_id, lek_id) values (3, 11);
+--insert into pregled_lekovi (pregled_id, lek_id) values (4, 12);
+--insert into pregled_lekovi (pregled_id, lek_id) values (1, 13);
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 14);
+--insert into pregled_lekovi (pregled_id, lek_id) values (1, 15);--
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 13);
+--insert into pregled_lekovi (pregled_id, lek_id) values (3, 16);
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 16);
+--insert into pregled_lekovi (pregled_id, lek_id) values (3, 17);
+--insert into pregled_lekovi (pregled_id, lek_id) values (1, 18);--
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 19);
+--insert into pregled_lekovi (pregled_id, lek_id) values (3, 9);
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 18);
+--insert into pregled_lekovi (pregled_id, lek_id) values (4, 21);
+--insert into pregled_lekovi (pregled_id, lek_id) values (3, 22);--
+--insert into pregled_lekovi (pregled_id, lek_id) values (1, 21);
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 23);
+--insert into pregled_lekovi (pregled_id, lek_id) values (1, 24);
+--insert into pregled_lekovi (pregled_id, lek_id) values (2, 25);
+--insert into pregled_lekovi (pregled_id, lek_id) values (1, 16);--
+--insert into pregled_lekovi (pregled_id, lek_id) values (3, 13);
 
 insert into simptom (name) values ('Seizure');
 insert into simptom (name) values ('Abnormal involuntary movements');
@@ -110,15 +192,13 @@ insert into test (name) values ('Physical therapy exercises');
 insert into test (name) values ('Ophthalmic examination and evaluation');
 insert into test (name) values ('Depression screen');
 
---insert into pregled(dijagnoza_id, karton_id) values (1, 1);
---insert into pregled(dijagnoza_id, karton_id) values (2, 2);
---insert into pregled(dijagnoza_id, karton_id) values (3, 3);
---insert into pregled(dijagnoza_id, karton_id) values (4, 3);
+
 
 insert into pregled(karton_id) values (1);
 insert into pregled(karton_id) values (2);
 insert into pregled(karton_id) values (3);
 insert into pregled(karton_id) values (3);
+
 
 insert into pregled_simptomi (pregled_id, simptom_id) values (1, 2);
 insert into pregled_simptomi (pregled_id, simptom_id) values (1, 3);
@@ -172,18 +252,4 @@ insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (3, 1);
 insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (1, 1);
 insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (4, 1);
 
---insert into test_dijagnoza (test_id, dijagnoza_id) values (3, 1);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (2, 1);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (4, 1);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (2, 3);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (5, 4);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (5, 3);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (5, 2);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (4, 2);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (5, 5);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (4, 6);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (4, 5);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (4, 4);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (1, 4);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (2, 6);
---insert into test_dijagnoza (test_id, dijagnoza_id) values (3, 3);
+

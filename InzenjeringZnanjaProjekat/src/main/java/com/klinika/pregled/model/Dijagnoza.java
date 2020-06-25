@@ -63,18 +63,11 @@ public class Dijagnoza{
 		this.name = name;
 	}
 	
-	@JsonIgnore
-	public Set<Pregled> getPregledi() {
-		return pregledi;
-	}
-	public void setPregledi(Set<Pregled> pregledi) {
-		this.pregledi = pregledi;
-	}
-	
 	@Override
 	public String toString() {
 		return "Dijagnoza [name=" + name + "]";
 	}
+
 	
 	@JsonIgnore
 	public Set<Lek> getLekovi() {
@@ -84,10 +77,5 @@ public class Dijagnoza{
 		this.lekovi = lekovi;
 	}
 
-	/*public Set<Test> getTestovi() {
-		return testovi;
-	}
-	public void setTestovi(Set<Test> testovi) {
-		this.testovi = testovi;
-	}*/
+
 }
