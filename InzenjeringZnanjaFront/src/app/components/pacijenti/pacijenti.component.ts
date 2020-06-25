@@ -8,6 +8,7 @@ import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
 import { UnesiDijagnozeDialogComponent } from '../unesi-dijagnoze-dialog/unesi-dijagnoze-dialog.component';
 import { UnesiTestoveDialogComponent } from '../unesi-testove-dialog/unesi-testove-dialog.component';
 import { Router } from '@angular/router';
+import { PacijentDialogComponent } from './pacijent-dialog/pacijent-dialog.component';
 
 @Component({
   selector: 'app-pacijenti',
@@ -18,7 +19,7 @@ import { Router } from '@angular/router';
 export class PacijentiComponent implements OnInit {
 
   pacijenti: Pacijent[] = [];
-  displayedColumns: string[] = ['id', 'name', 'lastname', 'karton'];
+  displayedColumns: string[] = ['id', 'name', 'lastname', 'karton',' '];
   dataSource = new MatTableDataSource<Pacijent>(this.pacijenti);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private http: HttpClient, public dialog: MatDialog, private router: Router) { }
@@ -32,7 +33,7 @@ export class PacijentiComponent implements OnInit {
         this.dataSource.paginator = this.paginator 
       }
     );
-  }
+  } 
 
   onKarton(model){
     console.log(model);
@@ -40,7 +41,9 @@ export class PacijentiComponent implements OnInit {
   }
 
   onNoviPacijent(){
-    alert('Neko treba da uradi dodavanje pacijenata! :)');
+    const dialogRef = this.dialog.open(PacijentDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   dobaviPacijente(): Observable<Pacijent[]>{

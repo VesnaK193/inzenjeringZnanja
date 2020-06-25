@@ -101,7 +101,7 @@ public class PregledController {
 		ZdravstveniKarton newKarton = new ZdravstveniKarton();
 		newKarton.setPacijent(pacijent);
 		ZdravstveniKarton karton = zdrRepo.save(newKarton);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(karton, HttpStatus.OK);
 	}
 	
 	@PostMapping("/test/{id}")
