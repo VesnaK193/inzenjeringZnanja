@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.klinika.pregled.model.Lek;
+import com.klinika.pregled.model.Pregled;
 
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
 import ucm.gaia.jcolibri.cbraplications.StandardCBRApplication;
@@ -19,28 +20,29 @@ import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 public class CBRApplicationLek implements StandardCBRApplication{
-	private List<Lek> lekovi;
+	private List<Pregled> pregledi;
 	Connector _connector;
 	CBRCaseBase _caseBase;
 	static Collection<RetrievalResult> requestResults;
 	NNConfig simConfig;
 	
-	public CBRApplicationLek(List<Lek> lekovi) {
+	public CBRApplicationLek(List<Pregled> pregledi) {
 		// TODO Auto-generated constructor stub
-		this.lekovi = lekovi;
+		this.pregledi = pregledi;
 		try {
             this.configure();
             this.preCycle();
         } catch(ExecutionException e) {
             e.printStackTrace();
-            System.out.println("Error in CBRApplicationTest class");
+            System.out.println("Error in CBRApplicationLek class");
         }
 	}
+	
 	
 	@Override
 	public void configure() throws ExecutionException {
 		// TODO Auto-generated method stub
-		_connector = new CsvConnectorLek(this.lekovi);
+		_connector = new CsvConnectorLek(this.pregledi);
 		_caseBase = new LinealCaseBase();
 		
 		simConfig = new NNConfig();

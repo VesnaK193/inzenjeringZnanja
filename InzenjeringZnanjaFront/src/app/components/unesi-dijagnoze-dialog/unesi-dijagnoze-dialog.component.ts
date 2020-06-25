@@ -6,6 +6,7 @@ import { ZdravstveniKarton } from 'src/app/modeli/zdravstveni-karton';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Pregled } from 'src/app/modeli/pregled';
 
 @Component({
   selector: 'app-unesi-dijagnoze-dialog',
@@ -18,21 +19,24 @@ export class UnesiDijagnozeDialogComponent implements OnInit {
   selectedOption: any;
 
   listaSvihDijagnoza: Dijagnoza[] = [];
-  odbraneDijagnoze: Dijagnoza[] = [];
+  odbraneDijagnoze: Dijagnoza[] = [ ];
 
   listaLekova: Lek[] = [];
   odabraniLekovi: Lek[] = [];
-                      
-  pacijent: Pacijent;
+                 
+  pregled: Pregled = new Pregled();
   karton: ZdravstveniKarton = new ZdravstveniKarton();
 
   constructor(public dialogRef: MatDialogRef<UnesiDijagnozeDialogComponent>, @Inject(MAT_DIALOG_DATA) public model: any,
   private http: HttpClient) {
-    this.dobaviDijagnoze().subscribe(
-      data => {
-        this.listaSvihDijagnoza = data;
-      }
-    );
+    this.pregled = model;
+    console.log(this.odbraneDijagnoze);
+    this.pregled.dijagnoze!=null?this.listaSvihDijagnoza = this.pregled.dijagnoze:null; 
+    // this.dobaviDijagnoze().subscribe(
+    //   data => {
+    //     this.listaSvihDijagnoza = data;
+    //   }
+    // );
    }
 
   ngOnInit() {
@@ -44,35 +48,51 @@ export class UnesiDijagnozeDialogComponent implements OnInit {
   onNgModelChangeLek(event){
   }
 
-  dodajDijagnoze(){
-    this.pacijent = this.model;
-    this.upisiDijagnoze(this.odbraneDijagnoze, this.pacijent.karton.id).subscribe(
+  dodajDijagnozeCBR(){
+    this.upisiDijagnozeCBR(this.odbraneDijagnoze).subscribe(
       data => {
         this.listaLekova = data;
+        console.log("CBR:");
         console.log(this.listaLekova);
       }
     );
   }
 
   dodajDijagnozeRBR(){
-    this.pacijent = this.model;
-    this.upisiSimptomeRBR(this.odbraneDijagnoze, this.pacijent.karton.id).subscribe(
+    this.upisiDijagnozeRBR(this.odbraneDijagnoze).subscribe(
       data => {
         this.listaLekova = data;
-        console.log("RBR");
+        console.log("RBR:");
         console.log(this.listaLekova);
       }
     );
   }
 
-  upisiDijagnoze(dijagnoze, id:number):Observable<any>{
-    return this.http.post('http://localhost:8089/lek/' + id, dijagnoze);
-  }
-  upisiSimptomeRBR(dijagnoze, id:number):Observable<any>{
-    return this.http.post('http://localhost:8089/lek/rbr/' + id, dijagnoze);
+  sacuvajTerapiju(){
+
   }
 
-  dobaviDijagnoze(): Observable<Dijagnoza[]>{
-    return this.http.get<Dijagnoza[]>('http://localhost:8089/lek/getAllDijagnoza');
+  upisiDijagnozeCBR(dijagnoze):Observable<any>{
+    return this.http.post('http://localhost:8089/lek/cbr/' + this.pregled.id, dijagnoze);
+  }
+  upisiDijagnozeRBR(dijagnoze):Observable<any>{
+    return this.http.post('http://localhost:8089/lek/rbr/' + this.pregled.id, dijagnoze);
+  }
+  saveLekove():Observable<any>{
+    return this.http.post('http://localhost:8089/lek/lek/' + this.pregled.id, this.listaLekova);
+  }
+
+  // dobaviDijagnoze(): Observable<Dijagnoza[]>{
+  //   return this.http.get<Dijagnoza[]>('http://localhost:8089/lek/getAllDijagnoza');
+  // }
+
+  validateSavucaj(){
+    return this.listaLekova.length!=0?true:false;
+  }
+  validatePronadji(){
+    return this.odbraneDijagnoze.length!=0?true:false;
+  }
+  validateListuDijagnoza(){
+    return this.listaSvihDijagnoza.length!=0?true:false;
   }
 }

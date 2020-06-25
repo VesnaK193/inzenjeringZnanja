@@ -13,6 +13,7 @@ import com.klinika.pregled.dto.CBRDijagnozaDTO;
 import com.klinika.pregled.dto.CBRLekDTO;
 import com.klinika.pregled.dto.CBRResponseDTO;
 import com.klinika.pregled.dto.CBRTestDTO;
+import com.klinika.pregled.dto.LekDTO;
 import com.klinika.pregled.dto.TestDTO;
 import com.klinika.pregled.repository.DijagnozaRepository;
 import com.klinika.pregled.repository.LekRepository;
@@ -98,23 +99,40 @@ public class CBRService {
 		return tests;
 	}
 	
-	public List<CBRLekDTO> getLekMatches(CBRModelLek cbr){
-		CBRApplicationLek app = new CBRApplicationLek(lekRepository.findAll());
+	public List<LekDTO> getLekMatches(CBRModelLek cbr){
+CBRApplicationLek app = new CBRApplicationLek(repo.findAll());
 		
 		Collection<RetrievalResult> eval = app.evaluate(cbr);
 		eval = SelectCases.selectTopKRR(eval, 5);
 		
+		Set<String> uniqueSetOfLek = new HashSet<>();
 		ArrayList<CBRLekDTO> rezultati = new ArrayList<>();
+		List<LekDTO> lekovi = new ArrayList<>();
+		
 		for(RetrievalResult r : eval) {
 			if(r.getEval() > 0) {
 				CBRLekDTO novi = new CBRLekDTO();
-				novi.setLek(((CBRModelLek)r.get_case().getDescription()).getLek());
+				novi.setLekovi(((CBRModelLek)r.get_case().getDescription()).getLekovi());
 				rezultati.add(novi);
 			}else {
 				System.out.println("Nothing matches!");
 			}
 		}
-		return rezultati;
+		
+		for(CBRLekDTO lekDTO : rezultati) {
+			for(String lek : lekDTO.getLekovi()) {
+				if(!uniqueSetOfLek.contains(lek)) {
+					uniqueSetOfLek.add(lek);
+				}
+			}
+		}
+		//Isfiltrirani lekovi
+		for(String s : uniqueSetOfLek) {
+			LekDTO newLek = new LekDTO(s);
+			lekovi.add(newLek);
+		}
+		
+		return lekovi;
 	}
 	
 	

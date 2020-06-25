@@ -46,7 +46,7 @@ public class CsvConnectorDijagnoza implements Connector {
     public Collection<CBRCase> retrieveAllCases() {
         // TODO Auto-generated method stub
         LinkedList<CBRCase> cases = new LinkedList<CBRCase>();
-        List<CBRModelDijagnoza> modelDijagnoze = new ArrayList<>();
+        /*List<CBRModelDijagnoza> modelDijagnoze = new ArrayList<>();
 
         for(Dijagnoza d : this.dijagnoze) {
             CBRModelDijagnoza modelDijagnoza = new CBRModelDijagnoza();
@@ -57,7 +57,7 @@ public class CsvConnectorDijagnoza implements Connector {
             CBRCase cbrCase = new CBRCase();
             cbrCase.setDescription(modelDijagnoza);
             cases.add(cbrCase);
-        }
+        }*/
 
         return cases;
     }

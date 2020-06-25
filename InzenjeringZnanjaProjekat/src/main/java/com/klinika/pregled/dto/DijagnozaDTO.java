@@ -2,31 +2,38 @@ package com.klinika.pregled.dto;
 
 public class DijagnozaDTO {
 	
-	private String dijagnoza;
+	private Long id;
+	private String name;
 	
 	
 	public DijagnozaDTO() {
 		super();
 	}
-	
 
-	public DijagnozaDTO(String dijagnoza) {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public DijagnozaDTO(String name) {
 		super();
-		this.dijagnoza = dijagnoza;
+		this.name = name;
 	}
 
-	public String getDijagnoza() {
-		return dijagnoza;
+	public String getName() {
+		return name;
 	}
 
-	public void setDijagnoza(String dijagnoza) {
-		this.dijagnoza = dijagnoza;
-	}
-
+	public void setName(String name) {
+		this.name = name;
+	} 
 
 	@Override
 	public String toString() {
-		return "DijagnozaDTO [dijagnoza=" + dijagnoza + "]";
+		return "DijagnozaDTO [dijagnoza=" + name + "]";
 	}
 	
 	

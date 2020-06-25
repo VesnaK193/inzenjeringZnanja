@@ -22,8 +22,8 @@ public class Lek {
 	@Column(name = "name")
 	private String name;
 	
-	@ManyToMany(mappedBy = "lekovi" )
-	private Set<Dijagnoza> dijagnoze = new HashSet<>();
+	@ManyToMany(mappedBy = "lekovi")
+	private Set<Pregled> pregledi = new HashSet<>();
 
 	public Lek() {
 		super();
@@ -44,14 +44,4 @@ public class Lek {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Set<Dijagnoza> getDijagnoze() {
-		return dijagnoze;
-	}
-
-	public void setDijagnoze(Set<Dijagnoza> dijagnoze) {
-		this.dijagnoze = dijagnoze;
-	}
-	
-	
 }

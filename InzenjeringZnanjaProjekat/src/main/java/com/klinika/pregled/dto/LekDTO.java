@@ -2,6 +2,7 @@ package com.klinika.pregled.dto;
 
 public class LekDTO {
 	
+	private Long id;
 	private String lek;
 	
 	public LekDTO() {
@@ -11,6 +12,15 @@ public class LekDTO {
 		// TODO Auto-generated constructor stub
 		this.lek = lek;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getLek() {
 		return lek;
 	}

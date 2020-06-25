@@ -1,4 +1,4 @@
 export class Dijagnoza {
   id:number;
-  dijagnoza:string;
+  name:string;
 }

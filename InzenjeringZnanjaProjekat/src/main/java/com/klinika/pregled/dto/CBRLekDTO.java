@@ -1,23 +1,26 @@
 package com.klinika.pregled.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class CBRLekDTO {
-	private String lek;
+	private Set<String> lekovi = new HashSet<>();
 	
 	public CBRLekDTO() {
 		// TODO Auto-generated constructor stub
 		super();
 	}
 
-	public String getLek() {
-		return lek;
+	public Set<String> getLekovi() {
+		return lekovi;
 	}
 
-	public void setLek(String lek) {
-		this.lek = lek;
+	public void setLekovi(Set<String> lekovi) {
+		this.lekovi = lekovi;
 	}
 
 	@Override
 	public String toString() {
-		return "CBRLekDTO [lek=" + lek + "]";
+		return "CBRLekDTO [lekovi=" + lekovi + "]";
 	}
 }
