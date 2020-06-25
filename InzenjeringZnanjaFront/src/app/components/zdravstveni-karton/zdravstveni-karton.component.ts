@@ -5,7 +5,7 @@ import { UnesiSimptomeDialogComponent } from './../unesi-simptome-dialog/unesi-s
 import { ZdravstveniKarton } from './../../modeli/zdravstveni-karton';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource, MatDialog, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
 import { Pregled } from './../../modeli/pregled';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,10 +17,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ZdravstveniKartonComponent implements OnInit {
 
   pregledi: Pregled[] = [];
-  displayedColumns: string[] = ['id', 'simptomi','testovi','dijagnoze'];
+  displayedColumns: string[] = ['id', 'simptomi','testovi','dijagnoze','lekovi'];
   dataSource ;
   idKartona;
 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private http: HttpClient, private route: ActivatedRoute, public dialog: MatDialog) { }
 
@@ -31,6 +32,7 @@ export class ZdravstveniKartonComponent implements OnInit {
         console.log(data)
         this.pregledi = data.pregledi;
         this.dataSource = new MatTableDataSource<Pregled>(data.pregledi);
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       }
     );
@@ -71,5 +73,16 @@ export class ZdravstveniKartonComponent implements OnInit {
   kreirajNoviPregled(id: number):Observable<any>{
     return this.http.put('http://localhost:8089/pregled', id);
   }
-
+  simptomiValid(pregled:Pregled){
+    return pregled.simptomi.length!=0?true:false;
+  }
+  testoviValid(pregled:Pregled){
+    return pregled.testovi.length!=0?true:false;
+  }
+  dijagnozeValid(pregled:Pregled){
+    return pregled.dijagnoze.length!=0?true:false;
+  }
+  lekoviValid(pregled:Pregled){
+    return pregled.lekovi.length!=0?true:false;
+  }
 }
