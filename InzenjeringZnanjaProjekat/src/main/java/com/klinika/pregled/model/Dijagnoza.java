@@ -30,7 +30,17 @@ public class Dijagnoza{
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany(mappedBy = "dijagnoza")        //, fetch = FetchType.LAZY, cascade = CascadeType.ALL
+	@ManyToMany
+	@JoinTable(name = "dijagnoza_lek", joinColumns = @JoinColumn(name = "dijagnoza_id"), inverseJoinColumns = @JoinColumn(name = "lek_id"))
+	private Set<Lek> lekovi = new HashSet<>();
+	
+	/*@OneToMany(mappedBy = "dijagnoza")        //, fetch = FetchType.LAZY, cascade = CascadeType.ALL
+	private Set<Pregled> pregledi = new HashSet<>();*/
+
+//	@ManyToMany(mappedBy = "dijagnoza")        //, fetch = FetchType.LAZY, cascade = CascadeType.ALL
+//	private Set<Test> testovi = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "dijagnoze")        //, fetch = FetchType.LAZY, cascade = CascadeType.ALL
 	private Set<Pregled> pregledi = new HashSet<>();
 	
 	public Dijagnoza() {
@@ -57,4 +67,15 @@ public class Dijagnoza{
 	public String toString() {
 		return "Dijagnoza [name=" + name + "]";
 	}
+
+	
+	@JsonIgnore
+	public Set<Lek> getLekovi() {
+		return lekovi;
+	}
+	public void setLekovi(Set<Lek> lekovi) {
+		this.lekovi = lekovi;
+	}
+
+
 }

@@ -13,7 +13,11 @@ import com.klinika.pregled.dto.CBRDijagnozaDTO;
 import com.klinika.pregled.dto.CBRLekDTO;
 import com.klinika.pregled.dto.CBRResponseDTO;
 import com.klinika.pregled.dto.CBRTestDTO;
+
+import com.klinika.pregled.dto.DijagnozaDTO;
+
 import com.klinika.pregled.dto.LekDTO;
+
 import com.klinika.pregled.dto.TestDTO;
 import com.klinika.pregled.repository.DijagnozaRepository;
 import com.klinika.pregled.repository.LekRepository;
@@ -136,17 +140,28 @@ CBRApplicationLek app = new CBRApplicationLek(repo.findAll());
 	}
 	
 	
-	public List<CBRDijagnozaDTO> getDijagnozaMatches(CBRModelDijagnoza cbr){
-		CBRApplicationDijagnoza app = new CBRApplicationDijagnoza(dijagnozaRepo.findAll());
+	public List<DijagnozaDTO> getDijagnozaMatches(CBRModelDijagnoza cbr){
+		CBRApplicationDijagnoza app = new CBRApplicationDijagnoza(repo.findAll());
+		
+		System.out.println("Usao je u finkciju CBRService.getDijagnoza matches!");
 		
 		Collection<RetrievalResult> eval = app.evaluate(cbr);
 		eval = SelectCases.selectTopKRR(eval,4);
 		
+		if(eval.size() < 1) {
+			System.out.println("Eval je prazan;");
+		}
+		
+		Set<String> uniqueSetOfDijagnoze = new HashSet<>();
 		ArrayList<CBRDijagnozaDTO> rezultati = new ArrayList<>();
+		List<DijagnozaDTO> listaDijagnoza = new ArrayList<>();
+		
 		for(RetrievalResult r : eval) {
+			System.out.println("for petlja");
 			if(r.getEval() > 0) {
+				System.out.println("if petlja");
 				CBRDijagnozaDTO novi = new CBRDijagnozaDTO();
-				novi.setDijagnoza(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoza());
+				novi.setDijagnoze(((CBRModelDijagnoza)r.get_case().getDescription()).getDijagnoze());
 				rezultati.add(novi);
 			}else {
 				System.out.println("Nothing matches!");
@@ -154,6 +169,19 @@ CBRApplicationLek app = new CBRApplicationLek(repo.findAll());
 				System.out.println("Dijagnoza!");
 			}
 		}
-		return rezultati;
+		
+		for(CBRDijagnozaDTO dijagnozaDTO : rezultati) {
+			for(String dijagnoza : dijagnozaDTO.getDijagnoze()) {
+				if(!uniqueSetOfDijagnoze.contains(dijagnoza)) {
+					uniqueSetOfDijagnoze.add(dijagnoza);
+				}
+			}
+		}
+		//Isfiltrirane dijagnoze
+		for(String s : uniqueSetOfDijagnoze) {
+			DijagnozaDTO newDijagnoza = new DijagnozaDTO(s);
+			listaDijagnoza.add(newDijagnoza);
+		}
+		return listaDijagnoza;
 	}
 }

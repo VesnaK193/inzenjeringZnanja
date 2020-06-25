@@ -1,9 +1,9 @@
 package com.klinika.pregled.cbrApplication;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import com.klinika.pregled.dto.CBRTestDTO;
+import java.util.Set;
 
 import ucm.gaia.jcolibri.cbrcore.Attribute;
 import ucm.gaia.jcolibri.cbrcore.CaseComponent;
@@ -11,7 +11,7 @@ import ucm.gaia.jcolibri.cbrcore.CaseComponent;
 public class CBRModelDijagnoza implements CaseComponent{
 
     //private List<Test> testovi = new ArrayList<Test>();
-    private String dijagnoza;
+    private Set<String> dijagnoze = new HashSet<>();
     private List<String> testovi = new ArrayList<String>();
 
     @Override
@@ -37,13 +37,21 @@ public class CBRModelDijagnoza implements CaseComponent{
     
     @Override
     public String toString() {
-        return "CBRModelDijagnoza [dijagnoze=" + dijagnoza + ", testovi=" + testovi + "]";
+        return "CBRModelDijagnoza [dijagnoze=" + dijagnoze + ", testovi=" + testovi + "]";
     }
-    public String getDijagnoza() {
+    /*public String getDijagnoza() {
         return dijagnoza;
     }
     public void setDijagnoza(String dijagnoza) {
         this.dijagnoza = dijagnoza;
-    }
+    }*/
+	public Set<String> getDijagnoze() {
+		return dijagnoze;
+	}
+	public void setDijagnoze(Set<String> dijagnoze) {
+		this.dijagnoze = dijagnoze;
+	}
+    
+    
 
 }

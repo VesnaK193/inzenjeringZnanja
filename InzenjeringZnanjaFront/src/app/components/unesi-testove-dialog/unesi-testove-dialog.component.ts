@@ -7,6 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Test } from 'src/app/modeli/test';
+import {Pregled} from "../../modeli/pregled";
 
 @Component({
   selector: 'app-unesi-testove-dialog',
@@ -24,31 +25,40 @@ export class UnesiTestoveDialogComponent implements OnInit {
   listaDijagnoza: Dijagnoza[] = [];
   odabraneDijagnoze: Dijagnoza[] = [];
 
-  pacijent: Pacijent;
+  pregled: Pregled;
   karton: ZdravstveniKarton = new ZdravstveniKarton();
 
   constructor(public dialogRef: MatDialogRef<UnesiTestoveDialogComponent>, @Inject(MAT_DIALOG_DATA) public model: any,
               private http: HttpClient) {
-    this.dobaviTestove().subscribe(
+    // this.dobaviTestove().subscribe(
+    //   data => {
+    //     this.listaSvihTestova = data;
+    //   }
+    // );
+  }
+
+  ngOnInit() {
+    let tests = this.dobaviTestove().subscribe(
       data => {
         this.listaSvihTestova = data;
       }
     );
   }
 
-  ngOnInit() {
-  }
-
   onNgModelChange(event){
     this.odbraniTestovi = event;
   }
 
+  //za cuvanje dijagnoza u pregled
   onNgModelChangeDijagnoza(event){
+    this.odabraneDijagnoze = event;
+    console.log(this.odabraneDijagnoze);
   }
 
-  dodajTestove(){
-    this.pacijent = this.model;
-    this.upisiTestove(this.odbraniTestovi, this.pacijent.karton.id).subscribe(
+  dodajTestoveCBR(){
+    this.pregled = this.model;
+    console.log(this.odbraniTestovi);
+    this.upisiTestoveCBR(this.odbraniTestovi, this.pregled.id).subscribe(
       data => {
         this.listaDijagnoza = data;
         console.log(this.listaDijagnoza);
@@ -57,8 +67,8 @@ export class UnesiTestoveDialogComponent implements OnInit {
   }
 
   dodajTestoveRBR(){
-    this.pacijent = this.model;
-    this.upisiTestoveRBR(this.odbraniTestovi, this.pacijent.karton.id).subscribe(
+    this.pregled = this.model;
+    this.upisiTestoveRBR(this.odbraniTestovi, this.pregled.id).subscribe(
       data => {
         this.listaDijagnoza = data;
         console.log("RBR");
@@ -67,12 +77,26 @@ export class UnesiTestoveDialogComponent implements OnInit {
     );
   }
 
-  upisiTestove(testovi, id:number):Observable<any>{
-    return this.http.post('http://localhost:8089/dijagnoza/' + id, testovi);
+  upisiTestove(){
+    this.pregled = this.model;
+    console.log(this.odabraneDijagnoze);
+    this.upisiDijagnoze(this.odabraneDijagnoze, this.pregled.id).subscribe(
+      data => {
+        console.log('Uspesno sacuvane dijagnoze.')
+      }
+    );
   }
 
-  upisiTestoveRBR(testovi, id:number):Observable<any>{
-    return this.http.post('http://localhost:8089/dijagnoza/rbr' + id, testovi);
+  upisiDijagnoze(dijagnoze, id:number):Observable<any>{                       //id pregleda
+    return this.http.post('http://localhost:8089/dijagnoza/saveDijagnoze/' + id, dijagnoze);
+  }
+
+  upisiTestoveCBR(newTestovi, id:number):Observable<any>{
+    return this.http.post('http://localhost:8089/dijagnoza/cbr/' + id, newTestovi);
+  }
+
+  upisiTestoveRBR(newTestovi, id:number):Observable<any>{
+    return this.http.post('http://localhost:8089/dijagnoza/rbr/' + id, newTestovi);
   }
 
   dobaviTestove(): Observable<Test[]>{

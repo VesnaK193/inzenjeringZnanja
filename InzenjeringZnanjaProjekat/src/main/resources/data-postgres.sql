@@ -192,6 +192,14 @@ insert into test (name) values ('Physical therapy exercises');
 insert into test (name) values ('Ophthalmic examination and evaluation');
 insert into test (name) values ('Depression screen');
 
+
+
+insert into pregled(karton_id) values (1);
+insert into pregled(karton_id) values (2);
+insert into pregled(karton_id) values (3);
+insert into pregled(karton_id) values (3);
+
+
 insert into pregled_simptomi (pregled_id, simptom_id) values (1, 2);
 insert into pregled_simptomi (pregled_id, simptom_id) values (1, 3);
 insert into pregled_simptomi (pregled_id, simptom_id) values (1, 4);
@@ -231,19 +239,17 @@ insert into pregled_testovi (pregled_id, test_id) values (4, 4);
 insert into pregled_testovi (pregled_id, test_id) values (4, 6);
 insert into pregled_testovi (pregled_id, test_id) values (4, 5);
 
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (1, 5);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (2, 5);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (2, 3);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (4, 4);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (2, 4);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (3, 5);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (3, 4);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (4, 2);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (2, 1);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (3, 1);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (1, 1);
+--insert into pregled_dijagnoza (pregled_id, dijagnoza_id) values (4, 1);
 
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (3, 1);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (2, 1);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (4, 1);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (2, 3);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (5, 4);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (5, 3);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (5, 2);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (4, 2);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (5, 5);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (4, 6);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (4, 5);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (4, 4);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (1, 4);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (2, 6);
---insert into test_dijagnoza (testovi_id, dijagnoza_id) values (3, 3);
+
