@@ -30,15 +30,8 @@ public class Dijagnoza{
 	@Column(name = "name")
 	private String name;
 	
-	@ManyToMany
-	@JoinTable(name = "dijagnoza_lek", joinColumns = @JoinColumn(name = "dijagnoza_id"), inverseJoinColumns = @JoinColumn(name = "lek_id"))
-	private Set<Lek> lekovi = new HashSet<>();
-	
 	@OneToMany(mappedBy = "dijagnoza")        //, fetch = FetchType.LAZY, cascade = CascadeType.ALL
 	private Set<Pregled> pregledi = new HashSet<>();
-
-	@ManyToMany(mappedBy = "dijagnoza")        //, fetch = FetchType.LAZY, cascade = CascadeType.ALL
-	private Set<Test> testovi = new HashSet<>();
 	
 	public Dijagnoza() {
 		super();
@@ -60,31 +53,8 @@ public class Dijagnoza{
 		this.name = name;
 	}
 	
-	@JsonIgnore
-	public Set<Pregled> getPregledi() {
-		return pregledi;
-	}
-	public void setPregledi(Set<Pregled> pregledi) {
-		this.pregledi = pregledi;
-	}
-	
 	@Override
 	public String toString() {
 		return "Dijagnoza [name=" + name + "]";
-	}
-	
-	@JsonIgnore
-	public Set<Lek> getLekovi() {
-		return lekovi;
-	}
-	public void setLekovi(Set<Lek> lekovi) {
-		this.lekovi = lekovi;
-	}
-
-	public Set<Test> getTestovi() {
-		return testovi;
-	}
-	public void setTestovi(Set<Test> testovi) {
-		this.testovi = testovi;
 	}
 }

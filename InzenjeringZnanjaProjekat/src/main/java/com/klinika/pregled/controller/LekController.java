@@ -17,16 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.klinika.pregled.cbrApplication.CBRModelLek;
+import com.klinika.pregled.cbrApplication.CBRModelTest;
 import com.klinika.pregled.cbrApplication.CBRService;
 import com.klinika.pregled.dto.CBRLekDTO;
+import com.klinika.pregled.dto.DijagnozaDTO;
 import com.klinika.pregled.dto.LekDTO;
+import com.klinika.pregled.dto.SimptomiDTO;
 import com.klinika.pregled.dto.TestDTO;
 import com.klinika.pregled.model.Lek;
 import com.klinika.pregled.model.Pregled;
 import com.klinika.pregled.model.Simptom;
+import com.klinika.pregled.model.Test;
 import com.klinika.pregled.model.ZdravstveniKarton;
 import com.klinika.pregled.model.Dijagnoza;
 import com.klinika.pregled.repository.LekRepository;
+import com.klinika.pregled.repository.PregledRepository;
 import com.ugos.jiprolog.engine.JIPEngine;
 import com.ugos.jiprolog.engine.JIPQuery;
 import com.ugos.jiprolog.engine.JIPTerm;
@@ -38,6 +43,9 @@ import com.klinika.pregled.repository.DijagnozaRepository;
 @RequestMapping(value = "/lek")
 public class LekController {
 
+	@Autowired
+	private PregledRepository preglediRepo;
+	
 	@Autowired
 	private LekRepository lekRepository;
 	
@@ -59,27 +67,45 @@ public class LekController {
 		return new ResponseEntity<List<Dijagnoza>>(dijagnoze, HttpStatus.OK);
 	}
 	
-	@PostMapping("/{id}")
-	public ResponseEntity<?> nadjiTerapiju(@RequestBody Set<Dijagnoza> dijagnoze, @PathVariable("id") Long id){
+	@PostMapping("cbr/{id}")
+	public ResponseEntity<List<LekDTO>> nadjiTerapiju(@RequestBody Set<DijagnozaDTO> dijagnoze, @PathVariable("id") Long id){ 
+		
+		Set<Dijagnoza> newDijagnoze = new HashSet<>();
+		
+		for(DijagnozaDTO s : dijagnoze) {
+			Dijagnoza newDijagnoza = new Dijagnoza(s.getName());
+			newDijagnoza.setId(s.getId());
+			newDijagnoze.add(newDijagnoza);
+		}
+		
 		List<String> cbrDijagnoze = new ArrayList<String>();
-		for(Dijagnoza d : dijagnoze) {
+		for(Dijagnoza d : newDijagnoze) {
 			cbrDijagnoze.add(d.getName());
 		}
-		CBRModelLek newLekModel = new CBRModelLek();
-		newLekModel.setDijagnoze(cbrDijagnoze);
-		List<CBRLekDTO> listaPogodnih = CBRService.getLekMatches(newLekModel);
-		return new ResponseEntity<List<CBRLekDTO>>(listaPogodnih, HttpStatus.OK);
 		
+		CBRModelLek newModel = new CBRModelLek();
+		newModel.setDijagnoze(cbrDijagnoze);
+		List<LekDTO> listal = CBRService.getLekMatches(newModel); 
+		
+		return new ResponseEntity<List<LekDTO>>(listal, HttpStatus.OK);
+		//
 	}
 	
 	@PostMapping("rbr/{id}")
-	public ResponseEntity<?> nadjiTerapijuRBR(@RequestBody Set<Dijagnoza> dijagnoze, @PathVariable("id") Long id){
-		JIPEngine engine = new JIPEngine();
-    	engine.consultFile("data/terapija.pl");
+	public ResponseEntity<?> nadjiTerapijuRBR(@RequestBody Set<DijagnozaDTO> dijagnoze, @PathVariable("id") Long id){
 		List<LekDTO> lekovi = new ArrayList<>();
 		Set<String> nazivi = new HashSet<>();
+		JIPEngine engine = new JIPEngine();
+    	engine.consultFile("data/terapija.pl");
+
+		Set<Dijagnoza> newDijagnoze = new HashSet<>();
+    	for(DijagnozaDTO d : dijagnoze) {
+    		Dijagnoza newDijganoza = new Dijagnoza(d.getName());
+    		newDijganoza.setId(d.getId());
+    		newDijagnoze.add(newDijganoza);
+		}
 		
-		for(Dijagnoza d : dijagnoze) {
+		for(Dijagnoza d : newDijagnoze) {
 			String upit = d.getName();
 			upit = upit.replace(" ", "_");
 	    	upit = upit.toLowerCase();
@@ -107,5 +133,35 @@ public class LekController {
 		}
 		
 		return new ResponseEntity<List<LekDTO>>(lekovi, HttpStatus.OK);
+	}
+	
+
+	
+	@PostMapping("/lek/{id}")
+	public ResponseEntity<?> saveLekove(@RequestBody Set<LekDTO> lekovi, @PathVariable("id") Long id){
+		
+		Set<Lek> newLekovi = new HashSet<>();
+		Pregled pregled = preglediRepo.getOne(id);
+		
+		for(LekDTO l : lekovi) {
+			Lek newLek = this.findOneLek(l.getLek());
+			System.out.println("***************************************************************");
+			System.out.println("Selektovani lek je : " + newLek.getName());
+			System.out.println("***************************************************************");
+			newLekovi.add(newLek);
+		}
+		pregled.setLekovi(newLekovi);
+		Pregled savedPregled = preglediRepo.save(pregled);
+		return new ResponseEntity<>(savedPregled,HttpStatus.OK);
+	}
+	
+	private Lek findOneLek(String name) {
+		List<Lek> lekovi = lekRepository.findAll();
+		for(Lek l : lekovi) {
+			if(l.getName().equals(name)) {
+				return l;
+			}
+		}
+		return null;
 	}
 }

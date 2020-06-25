@@ -44,17 +44,25 @@ public class Pregled {
 	@JoinTable(name = "pregled_testovi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "test_id"))
 	private Set<Test> testovi = new HashSet<>();
 	
-	@Column(name = "brojgodina")
-	private int brojgodina;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "pregled_dijagnoze", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "dijagnoza_id"))
+	private Set<Dijagnoza> dijagnoze = new HashSet<>();
 	
-	@Column(name = "tezina")
-	private int tezina;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "pregled_lekovi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "lek_id"))
+	private Set<Lek> lekovi = new HashSet<>();
 	
-	@Column(name = "pol")
-	private String pol;		//Format : m / f;
-	
-	@Column(name = "rasa")
-	private String rasa; 	//Format : white / black / other;
+//	@Column(name = "brojgodina")
+//	private int brojgodina;
+//	
+//	@Column(name = "tezina")
+//	private int tezina;
+//	
+//	@Column(name = "pol")
+//	private String pol;		//Format : m / f;
+//	
+//	@Column(name = "rasa")
+//	private String rasa; 	//Format : white / black / other;
 
 	public Pregled() {
 		super();
@@ -97,37 +105,53 @@ public class Pregled {
 		this.testovi = testovi;
 	}
 
-	public int getBrojgodina() {
-		return brojgodina;
+	public Set<Dijagnoza> getDijagnoze() {
+		return dijagnoze;
 	}
 
-	public void setBrojgodina(int brojgodina) {
-		this.brojgodina = brojgodina;
+	public void setDijagnoze(Set<Dijagnoza> dijagnoze) {
+		this.dijagnoze = dijagnoze;
 	}
 
-	public int getTezina() {
-		return tezina;
+	public Set<Lek> getLekovi() {
+		return lekovi;
 	}
 
-	public void setTezina(int tezina) {
-		this.tezina = tezina;
+	public void setLekovi(Set<Lek> lekovi) {
+		this.lekovi = lekovi;
 	}
 
-	public String getPol() {
-		return pol;
-	}
-
-	public void setPol(String pol) {
-		this.pol = pol;
-	}
-
-	public String getRasa() {
-		return rasa;
-	}
-
-	public void setRasa(String rasa) {
-		this.rasa = rasa;
-	}
+//	public int getBrojgodina() {
+//		return brojgodina;
+//	}
+//
+//	public void setBrojgodina(int brojgodina) {
+//		this.brojgodina = brojgodina;
+//	}
+//
+//	public int getTezina() {
+//		return tezina;
+//	}
+//
+//	public void setTezina(int tezina) {
+//		this.tezina = tezina;
+//	}
+//
+//	public String getPol() {
+//		return pol;
+//	}
+//
+//	public void setPol(String pol) {
+//		this.pol = pol;
+//	}
+//
+//	public String getRasa() {
+//		return rasa;
+//	}
+//
+//	public void setRasa(String rasa) {
+//		this.rasa = rasa;
+//	}
 	
 	
 }

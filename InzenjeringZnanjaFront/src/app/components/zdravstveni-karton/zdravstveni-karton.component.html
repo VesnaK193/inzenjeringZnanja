@@ -1,45 +1,52 @@
-<mat-card>
-    <mat-card-header>
-      <h1>Inzenjering znanja 2020</h1>
-    </mat-card-header>
-
-    <button mat-raised-button (click)="onNoviPregled()">Dodaj pregled</button>
-
+<mat-card style="min-height: 85vh;">
   <mat-card-content>
+    <div style="margin-top: 2vh;margin-bottom: 2vh;">
+      <h1 style=" margin-left: 10%;display: inline-block; font-size: 2.5em ;">Inzenjering znanja 2020</h1>
+      <button routerLink="/pacijent"
+      style="margin-left: 55%;margin-bottom: 30px; margin-top: 30px; display: inline-block; " mat-fab color="warn" aria-label="Example icon button with a home icon">
+        <mat-icon>home</mat-icon>
+      </button>
+      <hr>
+    </div>
+    <button mat-raised-button (click)="onNoviPregled()">Dodaj pregled</button>
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="pregledi">
-  
+      <table mat-table [dataSource]="dataSource">
+
         <!-- Id  -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>ID Pregleda</th>
           <td mat-cell *matCellDef="let pregled"> {{pregled.id}} </td>
         </ng-container>
-  
+
         <!-- Simptomi -->
         <ng-container matColumnDef="simptomi">
           <th mat-header-cell *matHeaderCellDef>Simptomi</th>
-          <td mat-cell *matCellDef="let pregled"> <button mat-raised-button (click)="unesiSimptome(pregled)">Unesi simptome </button>
+          <td mat-cell *matCellDef="let pregled"> <button mat-raised-button (click)="unesiSimptome(pregled)">Unesi
+              simptome </button>
           </td>
         </ng-container>
-  
+
         <!-- Testovi -->
         <ng-container matColumnDef="testovi">
           <th mat-header-cell *matHeaderCellDef>Testovi</th>
-          <td mat-cell *matCellDef="let pregled"> <button mat-raised-button (click)="unesiTestove(pregled)" >Unesi testove </button> </td> <!--Ovo ubaciti za testove (click)="unesiTetove(pacijent)" -->
+          <td mat-cell *matCellDef="let pregled"> <button mat-raised-button (click)="unesiTestove(pregled)">Unesi
+              testove </button> </td>
+          <!--Ovo ubaciti za testove (click)="unesiTetove(pacijent)" -->
         </ng-container>
-  
+
         <!-- Dijagnoze -->
         <ng-container matColumnDef="dijagnoze">
           <th mat-header-cell *matHeaderCellDef>Dijagnoze</th>
-          <td mat-cell *matCellDef="let pregled"> <button mat-raised-button (click)="unesiDijagnoze(pregled)">Unesi dijagnoze </button>
+          <td mat-cell *matCellDef="let pregled"> <button mat-raised-button (click)="unesiDijagnoze(pregled)">Unesi
+              dijagnoze </button>
           </td>
         </ng-container>
-  
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-  
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <!-- Paginator -->
+      <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
     </div>
   </mat-card-content>
-  </mat-card>
+</mat-card>

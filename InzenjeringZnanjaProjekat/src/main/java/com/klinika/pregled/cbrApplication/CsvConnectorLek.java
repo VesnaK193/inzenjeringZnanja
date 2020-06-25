@@ -3,10 +3,14 @@ package com.klinika.pregled.cbrApplication;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import com.klinika.pregled.model.Lek;
+import com.klinika.pregled.model.Pregled;
+import com.klinika.pregled.model.Simptom;
 import com.klinika.pregled.model.Dijagnoza;
 import com.klinika.pregled.model.Test;
 
@@ -16,11 +20,11 @@ import ucm.gaia.jcolibri.cbrcore.Connector;
 import ucm.gaia.jcolibri.exception.InitializingException;
 
 public class CsvConnectorLek implements Connector{
-	private List<Lek> lekovi = new ArrayList<Lek>();
+private List<Pregled> pregledi = new ArrayList<Pregled>();
 	
-	public CsvConnectorLek(List<Lek> lekovi) {
+	public CsvConnectorLek(List<Pregled> pregledi) {
 		// TODO Auto-generated constructor stub
-		this.lekovi = lekovi;
+		this.pregledi = pregledi;
 	}
 	
 	@Override
@@ -43,14 +47,18 @@ public class CsvConnectorLek implements Connector{
 	
 	@Override
 	public Collection<CBRCase> retrieveAllCases() {
-		// TODO Auto-generated method stub
 		LinkedList<CBRCase> cases = new LinkedList<CBRCase>();
-		List<CBRModelLek> modelLekovi= new ArrayList<>();
+		List<CBRModelLek> modelLekovi = new ArrayList<>();
 		
-		for(Lek l : this.lekovi) {
+		for(Pregled p : this.pregledi) {
 			CBRModelLek modelLek = new CBRModelLek();
-			modelLek.setLek(l.getName());
-			for(Dijagnoza d : l.getDijagnoze()) {
+			
+			Set<String> lekovi = new HashSet<>();
+			for(Lek l : p.getLekovi()) {
+				lekovi.add(l.getName());
+			}
+			modelLek.setLekovi(lekovi); 
+			for(Dijagnoza d : p.getDijagnoze()) {
 				modelLek.getDijagnoze().add(d.getName());
 			}
 			CBRCase cbrCase = new CBRCase();
