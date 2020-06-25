@@ -75,6 +75,18 @@ export class UnesiSimptomeDialogComponent implements OnInit {
     );
   }
 
+  sviTestovi(){
+    this.dobaviSveTestovi().subscribe(
+      data => {
+        this.listOfTests = data;
+      }
+    );
+  }
+
+  dobaviSveTestovi():Observable<Test[]>{
+    return this.http.get<Test[]>('http://localhost:8089/dijagnoza/getAllTestovi');
+  }
+
   upisiTestove(testovi, id:number):Observable<any>{                       //id pregleda
     return this.http.post('http://localhost:8089/pregled/test/' + id, testovi);
   }
