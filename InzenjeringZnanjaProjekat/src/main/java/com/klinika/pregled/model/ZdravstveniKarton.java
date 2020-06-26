@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,12 @@ public class ZdravstveniKarton {
 	
 	@OneToMany(mappedBy = "karton", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Pregled> pregledi = new HashSet<>();
+	
+	@Column(name = "pol")
+	private String pol;		//Format : m / f;
+	
+	@Column(name = "rasa")
+	private String rasa; 	//Format : white / black / other;
 
 	public Long getId() {
 		return id;
@@ -53,4 +60,22 @@ public class ZdravstveniKarton {
 	public void setPregledi(Set<Pregled> pregledi) {
 		this.pregledi = pregledi;
 	}
+
+	public String getPol() {
+		return pol;
+	}
+
+	public void setPol(String pol) {
+		this.pol = pol;
+	}
+
+	public String getRasa() {
+		return rasa;
+	}
+
+	public void setRasa(String rasa) {
+		this.rasa = rasa;
+	}
+	
+	
 }

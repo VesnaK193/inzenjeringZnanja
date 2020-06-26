@@ -13,6 +13,7 @@ import { UnesiDijagnozeDialogComponent } from './components/unesi-dijagnoze-dial
 import { UnesiTestoveDialogComponent } from './components/unesi-testove-dialog/unesi-testove-dialog.component';
 import { ZdravstveniKartonComponent } from './components/zdravstveni-karton/zdravstveni-karton.component';
 import { PacijentDialogComponent } from './components/pacijenti/pacijent-dialog/pacijent-dialog.component';
+import { PregledDialogComponent } from './components/zdravstveni-karton/pregled-dialog/pregled-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PacijentDialogComponent } from './components/pacijenti/pacijent-dialog/
     UnesiDijagnozeDialogComponent,
     UnesiTestoveDialogComponent,
     ZdravstveniKartonComponent,
-    PacijentDialogComponent
+    PacijentDialogComponent,
+    PregledDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { PacijentDialogComponent } from './components/pacijenti/pacijent-dialog/
     AngularMaterialModule,
     FormsModule
   ],
-  entryComponents : [PacijentDialogComponent,UnesiSimptomeDialogComponent,UnesiDijagnozeDialogComponent,UnesiTestoveDialogComponent],
+  entryComponents : [PacijentDialogComponent,UnesiSimptomeDialogComponent,UnesiDijagnozeDialogComponent,UnesiTestoveDialogComponent, PregledDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

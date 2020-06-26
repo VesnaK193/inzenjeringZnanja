@@ -4,4 +4,7 @@ export class Pacijent {
     name: string;
     lastname: string;
     karton: ZdravstveniKarton;
+
+    pol: string;
+    rasa: string;
 }

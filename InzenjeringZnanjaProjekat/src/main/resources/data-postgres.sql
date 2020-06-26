@@ -1,10 +1,10 @@
-insert into karton (id) values (1);
-insert into karton (id) values (2);
-insert into karton (id) values (3);
+insert into karton (id) values (1001);
+insert into karton (id) values (2001);
+insert into karton (id) values (3001);
 
-insert into pacijent (name, lastname, karton_id) values ('Petar', 'Petrovic', 1);
-insert into pacijent (name, lastname, karton_id) values ('Srecko', 'Sreckovic', 2);
-insert into pacijent (name, lastname, karton_id) values ('Marko', 'Markovic', 3);
+insert into pacijent (name, lastname, karton_id) values ('Petar', 'Petrovic', 1001);
+insert into pacijent (name, lastname, karton_id) values ('Srecko', 'Sreckovic', 2001);
+insert into pacijent (name, lastname, karton_id) values ('Marko', 'Markovic', 3001);
 
 insert into dijagnoza (name) values ('Essential tremor');
 insert into dijagnoza (name) values ('Parkinson disease');
@@ -27,23 +27,23 @@ insert into dijagnoza (name) values ('Dementia');
 --insert into pregled(dijagnoza_id, karton_id) values (3, 3);
 --insert into pregled(dijagnoza_id, karton_id) values (4, 3);
 
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 1, 45, 88, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 1, 46, 72, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 1, 47, 58, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 1, 48, 67, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 2, 55, 94, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 2, 56, 102, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 2, 56, 110, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 2, 56, 60, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 3, 57, 57, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 3, 57, 78, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 3, 58, 83, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 3, 60, 80, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 1001, 45, 88, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 1001, 46, 72, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 1001, 47, 58, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 1001, 48, 67, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 2001, 55, 94, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 2001, 56, 102, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 2001, 56, 110, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 2001, 56, 60, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 3001, 57, 57, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 3001, 57, 78, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 3001, 58, 83, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values ( 3001, 60, 80, 'm', 'white');
 
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values (1, 48, 64, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values (1, 48, 72, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values (2, 56, 81, 'm', 'white');
-insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values (3, 60, 82, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values (1001, 48, 64, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values (1001, 48, 72, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values (2001, 56, 81, 'm', 'white');
+insert into pregled( karton_id, brojgodina, tezina, pol, rasa) values (3001, 60, 82, 'm', 'white');
 
 insert into lek (name) values ('Beta blockers');
 insert into lek (name) values ('Anti-seizure medications');

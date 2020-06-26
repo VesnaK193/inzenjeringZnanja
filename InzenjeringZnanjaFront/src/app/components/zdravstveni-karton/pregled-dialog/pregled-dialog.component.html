@@ -1,0 +1,22 @@
+<div style="width: 600; height: 700;">
+    <h3>Dodajte novog pacijenta</h3>
+    <hr>
+    <mat-card-content>
+        <form class="example-form" (submit)="onSubmit()" >
+            <mat-form-field class="example-full-width" style="width:100%" appearance="fill">
+                <input matInput placeholder="Broj godina" maxlength="30" type="text" [(ngModel)]="godina"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Broj godina</mat-label>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" style="width:100%" appearance="fill">
+                <input matInput placeholder="Tezina [kg]" maxlength="30" type="text" [(ngModel)]="tezina"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Tezina</mat-label>
+            </mat-form-field>
+
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button style="float:right" mat-flat-button color="warn"  class="btn-block" type="submit" (click)="unesiPregled()">Potvrdi</button>
+    </mat-card-actions>
+</div>
