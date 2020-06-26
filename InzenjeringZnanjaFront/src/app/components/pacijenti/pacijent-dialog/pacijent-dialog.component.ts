@@ -47,6 +47,9 @@ export class PacijentDialogComponent implements OnInit {
   validateSubmit(){
     return this.firstname=="" || this.lastname=="" || this.pol=="" || this.rasa==""? false:true;
   }
+  validateEditSubmit(){
+    return this.firstname=="" || this.lastname==""? false:true;
+  }
 
   unesiPacijent(){
     this.upisiPacijenta().subscribe(
