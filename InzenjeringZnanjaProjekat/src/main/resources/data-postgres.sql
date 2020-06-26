@@ -63,7 +63,7 @@ insert into lek (name) values ('Detox and withrawal');--15
 insert into lek (name) values ('Supportive environment and counseling');
 insert into lek (name) values ('Educational assistance');
 insert into lek (name) values ('Pain relievers');
-insert into lek (name) values ('Triptans (Rizatriptan)');
+insert into lek (name) values ('Triptans');
 insert into lek (name) values ('Anti-nausea drugs');--20
 insert into lek (name) values ('Decongestant nasal sprays');
 insert into lek (name) values ('Cough syrups');

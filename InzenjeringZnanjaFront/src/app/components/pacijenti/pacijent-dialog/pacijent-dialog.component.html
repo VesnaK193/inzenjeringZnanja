@@ -32,7 +32,7 @@
     </mat-card-content>
     <mat-card-actions>
         <button *ngIf="flag==1" style="float:right" mat-flat-button color="warn" [disabled]="!validateSubmit()" class="btn-block" type="submit" (click)="onSubmit()">Potvrdi</button>
-        <button *ngIf="flag==2" style="float:right" mat-flat-button color="warn" class="btn-block" type="submit" (click)="onSubmit()">Potvrdi</button>
+        <button *ngIf="flag==2" style="float:right" mat-flat-button color="warn" [disabled]="!validateEditSubmit()" class="btn-block" type="submit" (click)="onSubmit()">Potvrdi</button>
         <button *ngIf="flag==3" style="float:right" mat-flat-button color="warn" class="btn-block" type="submit" (click)="onSubmit()">Potvrdi</button>
     </mat-card-actions>
 </div>
