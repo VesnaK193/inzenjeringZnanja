@@ -2,7 +2,7 @@
 
 Aplikacija koja lekarima omogucava podrsku za evidentiranje pregleda iz oblasti Neurologije.
 
-Aplikacija omogucava predikciju dopunskih ispitivanja na osnovu anamneze i fizikalnog pregleda, predikciju dijagnoze na osnovu fizikalnog pregleda i predikciju lekova na osnovu dijagnoza.
+Aplikacija omogucava predikciju dopunskih ispitivanja na osnovu anamneze i fizikalnog pregleda, predikciju dijagnoze na osnovu fizikalnog pregleda i dopunskih ispitivanja i predikciju lekova na osnovu dijagnoza.
 
 Predikcija koju aplikacija koristi je realizovana na dva nacina: Case Based Reasoning i Rule Based Reasoning.
 Baza znanja je popunjena inicijalnim podacima preuzetih uglavnom sa "http://www.symcat.com/symptoms/neurological-symptoms", i testni primeri se nalaze u sql skripti, za CBR, i u folderu ./data/ za RBR.
