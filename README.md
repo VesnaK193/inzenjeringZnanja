@@ -8,10 +8,10 @@ Predikcija koju aplikacija koristi je realizovana na dva nacina: Case Based Reas
 Baza znanja je popunjena inicijalnim podacima preuzetih uglavnom sa "http://www.symcat.com/symptoms/neurological-symptoms", i testni primeri se nalaze u sql skripti, za CBR, i u folderu ./data/ za RBR.
 
 Backend:
--Realizovan preko STS frameworka u Java programskom jeziku.
--Neposredno prije pokretanja, neophodno je iz razvojnog okruzenja ukljuciti sve biblioteke koje se nalaze u folderu ./lib/ 
-  -> Desni klik na biblioteku, a potom na Add To Build Path.
--Nakon toga pokrenuti program, koji ce nakon uspesnog pokretanja slusati na portu 8089.
+- Realizovan preko STS frameworka u Java programskom jeziku.
+- Neposredno prije pokretanja, neophodno je iz razvojnog okruzenja ukljuciti sve biblioteke koje se nalaze u folderu ./lib/ 
+    -> Desni klik na biblioteku, a potom na Add To Build Path.
+- Nakon toga pokrenuti program, koji ce nakon uspesnog pokretanja slusati na portu 8089.
 
 Front:
 - Realizovan kao Angular aplikacija.
