@@ -20,3 +20,6 @@ Front:
 - Aplikacija je uspesno pokrenuta i slusa na portu 4200.
 
 Nakon toga, aplikacija je spremna za rad.
+
+-Link video zapisa na google drive-u (u slucaju nemoucnosti otvaranja video zapisa iz foldera na gitu):
+https://drive.google.com/file/d/1n424_Jn0620wty-ZlgFsiHxhcqLbPUW_/view?usp=sharing
