@@ -10,25 +10,25 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class PregledDialogComponent implements OnInit {
 
-  godina:string="";
-  tezina:string="";
+  godina:number;
+  tezina:number;
 
   newPregled : NewPregled = new NewPregled();
   kartonID: number;
+  flag:number;
 
   constructor(private http: HttpClient, public dialogRef: MatDialogRef<PregledDialogComponent>, @Inject(MAT_DIALOG_DATA) public model: any) {
-    this.kartonID = model;
+    this.kartonID = model.id;
+    this.flag = model.flag;
    }
 
   ngOnInit() {
   }
 
   unesiPregled(){
-    this.upisiPregled().subscribe(
-      data => {
-        console.log('Uspesno kreiran novi pregled')
-      }
-    );
+    this.upisiPregled().subscribe(pregled => {
+      this.dialogRef.close(pregled);
+    });
   }
 
   upisiPregled(){
@@ -36,6 +36,9 @@ export class PregledDialogComponent implements OnInit {
     this.newPregled.godina = this.godina;
     this.newPregled.tezina = this.tezina;
     return this.http.put('http://localhost:8089/pregled', this.newPregled);
+  }
+  disabledButton(){
+    return this.godina==null||this.tezina==null?true:false;
   }
 
 }

@@ -1,7 +1,7 @@
 package com.klinika.pregled.dto;
 
 public class PacijentDTO {
-	
+	private Long id;
 	private String name;
 	private String lastname;
 	private String pol;		//Format : m / f;
@@ -9,6 +9,14 @@ public class PacijentDTO {
 	
 	public PacijentDTO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {

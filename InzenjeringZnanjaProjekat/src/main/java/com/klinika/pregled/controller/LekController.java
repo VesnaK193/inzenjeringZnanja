@@ -88,9 +88,18 @@ public class LekController {
 		CBRModelLek newModel = new CBRModelLek();
 		newModel.setDijagnoze(cbrDijagnoze);
 		List<LekDTO> listal = CBRService.getLekMatches(newModel);
+
+		List<LekDTO> lekoviFiltered = new ArrayList<>();
+		for(int i = 0; i < 5; i++) {
+			if( i < listal.size()) {
+				lekoviFiltered.add(listal.get(i));
+			}else {
+				break;
+			}
+		}
 		Pregled saved = preglediRepo.save(pregled); 
 		
-		return new ResponseEntity<List<LekDTO>>(listal, HttpStatus.OK);
+		return new ResponseEntity<List<LekDTO>>(lekoviFiltered, HttpStatus.OK);
 		//
 	}
 	
@@ -136,9 +145,18 @@ public class LekController {
 				}
 			}
 		}
+
+		List<LekDTO> lekoviFiltered = new ArrayList<>();
+		for(int i = 0; i < 5; i++) {
+			if( i < lekovi.size()) {
+				lekoviFiltered.add(lekovi.get(i));
+			}else {
+				break;
+			}
+		}
 		Pregled saved = preglediRepo.save(pregled); 
 		
-		return new ResponseEntity<List<LekDTO>>(lekovi, HttpStatus.OK);
+		return new ResponseEntity<List<LekDTO>>(lekoviFiltered, HttpStatus.OK);
 	}
 	
 
