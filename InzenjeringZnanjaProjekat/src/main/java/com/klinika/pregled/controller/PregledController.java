@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.klinika.pregled.cbrApplication.CBRModelTest;
 import com.klinika.pregled.cbrApplication.CBRService;
+import com.klinika.pregled.dto.NewPregledDTO;
+import com.klinika.pregled.dto.PacijentDTO;
 import com.klinika.pregled.dto.SimptomiDTO;
 import com.klinika.pregled.dto.TestDTO;
 import com.klinika.pregled.model.Pacijent;
@@ -66,10 +68,15 @@ public class PregledController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<?> createPregled(@RequestBody Long id){		//ID Zdravstvenog Kartona
-		ZdravstveniKarton k = zdrRepo.getOne(id);
+	public ResponseEntity<?> createPregled(@RequestBody NewPregledDTO newPregledDTO){		//ID Zdravstvenog Kartona
+		System.out.println("Id kartona je: " + newPregledDTO.getId());
+		ZdravstveniKarton k = zdrRepo.getOne(newPregledDTO.getId());
 		Pregled newPregled = new Pregled();
 		newPregled.setKarton(k);
+		newPregled.setBrojgodina(Integer.parseInt(newPregledDTO.getGodina()));
+		newPregled.setTezina(Integer.parseInt(newPregledDTO.getTezina()));
+		newPregled.setPol(k.getPol());
+		newPregled.setRasa(k.getRasa());
 		Pregled saved = this.preglediRepo.save(newPregled);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -92,12 +99,20 @@ public class PregledController {
 		return new ResponseEntity<List<Simptom>>(simptomi, HttpStatus.OK);
 	}
 	
-	@PostMapping("karton/{id}")
-	public ResponseEntity<?> createKarton(@PathVariable Long id) {
-		Pacijent pacijent = pacijentRepo.findById(id).get();
+	@PostMapping("/karton")
+	public ResponseEntity<?> createKarton(@RequestBody PacijentDTO pacijentDTO) {
+		
 		ZdravstveniKarton newKarton = new ZdravstveniKarton();
-		newKarton.setPacijent(pacijent);
+		newKarton.setPol(pacijentDTO.getPol());
+		newKarton.setRasa(pacijentDTO.getRasa());
 		ZdravstveniKarton karton = zdrRepo.save(newKarton);
+		
+		Pacijent pacijent = new Pacijent();
+		pacijent.setName(pacijentDTO.getName());
+		pacijent.setLastname(pacijentDTO.getLastname());
+		pacijent.setKarton(karton);
+		Pacijent savedPacijent = this.pacijentRepo.save(pacijent);
+		
 		return new ResponseEntity<>(karton, HttpStatus.OK);
 	}
 	

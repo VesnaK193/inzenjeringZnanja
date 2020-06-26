@@ -13,9 +13,22 @@
                     [ngModelOptions]="{standalone: true}" required>
                     <mat-label>Prezime</mat-label>
             </mat-form-field>
+
+            <mat-form-field class="example-full-width" style="width:100%" appearance="fill">
+                <input matInput placeholder="m/f" maxlength="30" type="text" [(ngModel)]="pol"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Pol</mat-label>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" style="width:100%" appearance="fill">
+                <input matInput placeholder="White/Black/Other" maxlength="30" type="text" [(ngModel)]="rasa"
+                    [ngModelOptions]="{standalone: true}" required>
+                    <mat-label>Rasa</mat-label>
+            </mat-form-field>
+
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button style="float:right" mat-flat-button color="warn" [disabled]="!validateSubmit()" class="btn-block" type="submit">Potvrdi</button>
+        <button style="float:right" mat-flat-button color="warn" [disabled]="!validateSubmit()" class="btn-block" type="submit" (click)="unesiPacijent()">Potvrdi</button>
     </mat-card-actions>
 </div>

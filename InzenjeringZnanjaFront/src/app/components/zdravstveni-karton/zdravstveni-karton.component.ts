@@ -1,3 +1,4 @@
+import { PregledDialogComponent } from './pregled-dialog/pregled-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UnesiTestoveDialogComponent } from './../unesi-testove-dialog/unesi-testove-dialog.component';
 import { UnesiDijagnozeDialogComponent } from './../unesi-dijagnoze-dialog/unesi-dijagnoze-dialog.component';
@@ -61,12 +62,16 @@ export class ZdravstveniKartonComponent implements OnInit {
   }
 
   onNoviPregled(){
-    this.kreirajNoviPregled(this.idKartona).subscribe(
-      data => {
-        console.log('Uspesno kreiran novi pregled');
-        window.location.reload();
-      }
-    );
+    const dialogRef = this.dialog.open(PregledDialogComponent, {data: this.idKartona});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+    // this.kreirajNoviPregled(this.idKartona).subscribe(
+    //   data => {
+    //     console.log('Uspesno kreiran novi pregled');
+    //     window.location.reload();
+    //   }
+    // );
   }
 
   dobaviZdravstveneKartone(id: number):Observable<ZdravstveniKarton>{
