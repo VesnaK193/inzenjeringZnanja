@@ -69,6 +69,7 @@ public class LekController {
 	
 	@PostMapping("cbr/{id}")
 	public ResponseEntity<List<LekDTO>> nadjiTerapiju(@RequestBody Set<DijagnozaDTO> dijagnoze, @PathVariable("id") Long id){ 
+		Pregled pregled = preglediRepo.getOne(id);
 		
 		Set<Dijagnoza> newDijagnoze = new HashSet<>();
 		
@@ -77,6 +78,7 @@ public class LekController {
 			newDijagnoza.setId(s.getId());
 			newDijagnoze.add(newDijagnoza);
 		}
+		pregled.setDijagnoze(newDijagnoze);
 		
 		List<String> cbrDijagnoze = new ArrayList<String>();
 		for(Dijagnoza d : newDijagnoze) {
@@ -85,7 +87,8 @@ public class LekController {
 		
 		CBRModelLek newModel = new CBRModelLek();
 		newModel.setDijagnoze(cbrDijagnoze);
-		List<LekDTO> listal = CBRService.getLekMatches(newModel); 
+		List<LekDTO> listal = CBRService.getLekMatches(newModel);
+		Pregled saved = preglediRepo.save(pregled); 
 		
 		return new ResponseEntity<List<LekDTO>>(listal, HttpStatus.OK);
 		//
@@ -93,6 +96,7 @@ public class LekController {
 	
 	@PostMapping("rbr/{id}")
 	public ResponseEntity<?> nadjiTerapijuRBR(@RequestBody Set<DijagnozaDTO> dijagnoze, @PathVariable("id") Long id){
+		Pregled pregled = preglediRepo.getOne(id);
 		List<LekDTO> lekovi = new ArrayList<>();
 		Set<String> nazivi = new HashSet<>();
 		JIPEngine engine = new JIPEngine();
@@ -104,6 +108,7 @@ public class LekController {
     		newDijganoza.setId(d.getId());
     		newDijagnoze.add(newDijganoza);
 		}
+		pregled.setDijagnoze(newDijagnoze);
 		
 		for(Dijagnoza d : newDijagnoze) {
 			String upit = d.getName();
@@ -131,6 +136,7 @@ public class LekController {
 				}
 			}
 		}
+		Pregled saved = preglediRepo.save(pregled); 
 		
 		return new ResponseEntity<List<LekDTO>>(lekovi, HttpStatus.OK);
 	}
@@ -144,7 +150,7 @@ public class LekController {
 		Pregled pregled = preglediRepo.getOne(id);
 		
 		for(LekDTO l : lekovi) {
-			Lek newLek = this.findOneLek(l.getLek());
+			Lek newLek = this.findOneLek(l.getName());
 			System.out.println("***************************************************************");
 			System.out.println("Selektovani lek je : " + newLek.getName());
 			System.out.println("***************************************************************");

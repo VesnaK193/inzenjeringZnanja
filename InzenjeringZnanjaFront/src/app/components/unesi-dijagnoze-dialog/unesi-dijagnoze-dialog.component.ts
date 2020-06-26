@@ -44,8 +44,10 @@ export class UnesiDijagnozeDialogComponent implements OnInit {
 
   onNgModelChange(event){
     this.odbraneDijagnoze = event;
-  }
+  } 
+
   onNgModelChangeLek(event){
+    this.odabraniLekovi = event;
   }
 
   dodajDijagnozeCBR(){
@@ -69,8 +71,16 @@ export class UnesiDijagnozeDialogComponent implements OnInit {
   }
 
   sacuvajTerapiju(){
-
-  }
+    this.pregled = this.model;
+    this.pregled.dijagnoze = this.odbraneDijagnoze;
+    this.pregled.lekovi = this.odabraniLekovi 
+    this.saveLekove().subscribe(
+      data => {
+        console.log('Uspesno sacuvane dijagnoze.');
+        this.dialogRef.close(this.pregled);
+      }
+    );
+  } 
 
   upisiDijagnozeCBR(dijagnoze):Observable<any>{
     return this.http.post('http://localhost:8089/lek/cbr/' + this.pregled.id, dijagnoze);
@@ -79,7 +89,7 @@ export class UnesiDijagnozeDialogComponent implements OnInit {
     return this.http.post('http://localhost:8089/lek/rbr/' + this.pregled.id, dijagnoze);
   }
   saveLekove():Observable<any>{
-    return this.http.post('http://localhost:8089/lek/lek/' + this.pregled.id, this.listaLekova);
+    return this.http.post('http://localhost:8089/lek/lek/' + this.pregled.id, this.odabraniLekovi);
   }
 
   // dobaviDijagnoze(): Observable<Dijagnoza[]>{

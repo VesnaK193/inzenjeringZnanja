@@ -38,11 +38,12 @@ export class UnesiTestoveDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    let tests = this.dobaviTestove().subscribe(
-      data => {
-        this.listaSvihTestova = data;
-      }
-    );
+    this.listaSvihTestova = this.model.testovi;
+    // let tests = this.dobaviTestove().subscribe(
+    //   data => {
+    //     this.listaSvihTestova = data;
+    //   }
+    // );
   }
 
   onNgModelChange(event){
@@ -79,10 +80,13 @@ export class UnesiTestoveDialogComponent implements OnInit {
 
   upisiTestove(){
     this.pregled = this.model;
+    this.pregled.dijagnoze = this.odabraneDijagnoze;
+    this.pregled.testovi = this.odbraniTestovi
     console.log(this.odabraneDijagnoze);
     this.upisiDijagnoze(this.odabraneDijagnoze, this.pregled.id).subscribe(
       data => {
-        console.log('Uspesno sacuvane dijagnoze.')
+        console.log('Uspesno sacuvane dijagnoze.');
+        this.dialogRef.close(this.pregled);
       }
     );
   }
@@ -98,8 +102,14 @@ export class UnesiTestoveDialogComponent implements OnInit {
   upisiTestoveRBR(newTestovi, id:number):Observable<any>{
     return this.http.post('http://localhost:8089/dijagnoza/rbr/' + id, newTestovi);
   }
-
-  dobaviTestove(): Observable<Test[]>{
-    return this.http.get<Test[]>('http://localhost:8089/dijagnoza/getAllTestovi');
+  
+  validateSavucaj(){
+    return this.listaDijagnoza.length!=0?true:false;
+  }
+  validatePronadji(){
+    return this.odbraniTestovi.length!=0?true:false;
+  }
+  validateListuTestova(){
+    return this.listaSvihTestova.length!=0?true:false;
   }
 }
