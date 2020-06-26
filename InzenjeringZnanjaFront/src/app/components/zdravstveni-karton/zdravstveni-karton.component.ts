@@ -62,16 +62,27 @@ export class ZdravstveniKartonComponent implements OnInit {
   }
 
   onNoviPregled(){
-    const dialogRef = this.dialog.open(PregledDialogComponent, {data: this.idKartona});
+    let flag = 1;
+    const dialogRef = this.dialog.open(PregledDialogComponent, {data: {id:this.idKartona,flag:flag}});
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
+      this.pregledi.push(result);
+      this.dataSource = new MatTableDataSource<Pregled>(this.pregledi);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
-    // this.kreirajNoviPregled(this.idKartona).subscribe(
-    //   data => {
-    //     console.log('Uspesno kreiran novi pregled');
-    //     window.location.reload();
-    //   }
-    // );
+  }
+
+  onDelete(pregled:Pregled){
+    let flag = 2;
+    const dialogRef = this.dialog.open(PregledDialogComponent, {data: {id:this.idKartona,flag:flag,idPregleda:pregled.id}});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.pregledi.push(result);
+      this.dataSource = new MatTableDataSource<Pregled>(this.pregledi);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   dobaviZdravstveneKartone(id: number):Observable<ZdravstveniKarton>{

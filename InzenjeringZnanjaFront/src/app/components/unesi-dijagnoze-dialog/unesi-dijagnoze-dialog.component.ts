@@ -82,6 +82,31 @@ export class UnesiDijagnozeDialogComponent implements OnInit {
     );
   } 
 
+
+  // dobaviDijagnoze(): Observable<Dijagnoza[]>{
+  //   return this.http.get<Dijagnoza[]>('http://localhost:8089/lek/getAllDijagnoza');
+  // }
+
+  validateSavucaj(){
+    return this.odabraniLekovi.length!=0?true:false;
+  }
+  validatePronadji(){
+    return this.odbraneDijagnoze.length!=0?true:false;
+  }
+  validateListuDijagnoza(){
+    return this.listaSvihDijagnoza.length!=0?true:false;
+  }
+  getDijagnoze(){
+    this.getAllDijagnoze().subscribe(dijagnoze =>{
+      this.listaSvihDijagnoza = dijagnoze;
+    })
+  }
+  getLekovi(){
+    this.getAllLekovi().subscribe(lekovi =>{
+      this.listaLekova = lekovi;
+    })
+  }
+
   upisiDijagnozeCBR(dijagnoze):Observable<any>{
     return this.http.post('http://localhost:8089/lek/cbr/' + this.pregled.id, dijagnoze);
   }
@@ -91,18 +116,10 @@ export class UnesiDijagnozeDialogComponent implements OnInit {
   saveLekove():Observable<any>{
     return this.http.post('http://localhost:8089/lek/lek/' + this.pregled.id, this.odabraniLekovi);
   }
-
-  // dobaviDijagnoze(): Observable<Dijagnoza[]>{
-  //   return this.http.get<Dijagnoza[]>('http://localhost:8089/lek/getAllDijagnoza');
-  // }
-
-  validateSavucaj(){
-    return this.listaLekova.length!=0?true:false;
+  getAllDijagnoze(): Observable<Dijagnoza[]>{
+    return this.http.get<Dijagnoza[]>('http://localhost:8089/dijagnoza');
   }
-  validatePronadji(){
-    return this.odbraneDijagnoze.length!=0?true:false;
-  }
-  validateListuDijagnoza(){
-    return this.listaSvihDijagnoza.length!=0?true:false;
+  getAllLekovi(): Observable<Dijagnoza[]>{
+      return this.http.get<Lek[]>('http://localhost:8089/lek');
   }
 }

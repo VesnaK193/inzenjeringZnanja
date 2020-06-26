@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,7 +79,23 @@ public class PregledController {
 		newPregled.setPol(k.getPol());
 		newPregled.setRasa(k.getRasa());
 		Pregled saved = this.preglediRepo.save(newPregled);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(saved,HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{idk}/{idp}")
+	public ResponseEntity<?> deletePregled(@PathVariable("idk") Long idk,@PathVariable("idp") Long idp) {
+		Pregled preg =preglediRepo.getOne(idp);
+		ZdravstveniKarton k = zdrRepo.getOne(idk);
+		for(Pregled p : k.getPregledi()) {
+			if(p.getId()==idp) {
+				
+				k.getPregledi().remove(preg);
+				break;
+			}
+		};
+		this.preglediRepo.deleteById(idp);
+		
+		return new ResponseEntity<>( HttpStatus.OK);
 	}
 	
 	@GetMapping("/karton/{id}")
@@ -113,7 +130,25 @@ public class PregledController {
 		pacijent.setKarton(karton);
 		Pacijent savedPacijent = this.pacijentRepo.save(pacijent);
 		
-		return new ResponseEntity<>(karton, HttpStatus.OK);
+		return new ResponseEntity<>(savedPacijent, HttpStatus.OK);
+	}
+	
+	@PutMapping("/karton")
+	public ResponseEntity<?> editKarton(@RequestBody PacijentDTO pacijentDTO) {
+		
+		Pacijent pacijent = pacijentRepo.getOne(pacijentDTO.getId());
+		pacijent.setName(pacijentDTO.getName());
+		pacijent.setLastname(pacijentDTO.getLastname());
+		Pacijent savedPacijent = this.pacijentRepo.save(pacijent);
+		
+		return new ResponseEntity<>(savedPacijent, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/karton/{id}")
+	public ResponseEntity<?> deleteKarton(@PathVariable Long id) {
+		this.pacijentRepo.deleteById(id);
+		
+		return new ResponseEntity<>( HttpStatus.OK);
 	}
 	
 	@PostMapping("/test/{id}")
