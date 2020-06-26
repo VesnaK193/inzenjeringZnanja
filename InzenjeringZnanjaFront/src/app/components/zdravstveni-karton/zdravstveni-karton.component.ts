@@ -42,18 +42,21 @@ export class ZdravstveniKartonComponent implements OnInit {
     console.log(model)
     const dialogRef = this.dialog.open(UnesiSimptomeDialogComponent, {data: model});
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 
   unesiDijagnoze(model){
     const dialogRef = this.dialog.open(UnesiDijagnozeDialogComponent, {data: model});
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 
   unesiTestove(model){
     const dialogRef = this.dialog.open(UnesiTestoveDialogComponent, {data: model});
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 
@@ -74,13 +77,13 @@ export class ZdravstveniKartonComponent implements OnInit {
     return this.http.put('http://localhost:8089/pregled', id);
   }
   simptomiValid(pregled:Pregled){
-    return pregled.simptomi.length!=0?true:false;
-  }
-  testoviValid(pregled:Pregled){
     return pregled.testovi.length!=0?true:false;
   }
-  dijagnozeValid(pregled:Pregled){
+  testoviValid(pregled:Pregled){ 
     return pregled.dijagnoze.length!=0?true:false;
+  }
+  dijagnozeValid(pregled:Pregled){
+    return pregled.lekovi.length!=0?true:false;
   }
   lekoviValid(pregled:Pregled){
     return pregled.lekovi.length!=0?true:false;

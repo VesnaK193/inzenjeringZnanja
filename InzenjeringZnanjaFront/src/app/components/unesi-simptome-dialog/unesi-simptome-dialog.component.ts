@@ -67,10 +67,13 @@ export class UnesiSimptomeDialogComponent implements OnInit {
 
   upisiSimptome(){
     this.pregled = this.model;
+    this.pregled.simptomi = this.pacijentSimptomi;
+    this.pregled.testovi = this.selectedTests;
     console.log(this.selectedTests)
     this.upisiTestove(this.selectedTests, this.pregled.id).subscribe(
       data => {
-        console.log('Uspesno sacuvani testovi')
+        console.log('Uspesno sacuvani testovi');
+        this.dialogRef.close(this.pregled);
       }
     );
   }
@@ -101,5 +104,12 @@ export class UnesiSimptomeDialogComponent implements OnInit {
 
   dobaviSimptome(): Observable<Simptom[]>{
     return this.http.get<Simptom[]>('http://localhost:8089/pregled/simptom');
+  }
+
+  validateSavucaj(){
+    return this.selectedTests.length!=0?true:false;
+  }
+  validatePronadji(){
+    return this.pacijentSimptomi.length!=0?true:false;
   }
 }
