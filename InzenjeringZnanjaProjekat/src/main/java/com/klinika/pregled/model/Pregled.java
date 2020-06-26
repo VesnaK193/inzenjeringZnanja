@@ -49,7 +49,18 @@ public class Pregled {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "pregled_lekovi", joinColumns = @JoinColumn(name = "pregled_id"), inverseJoinColumns = @JoinColumn(name = "lek_id"))
 	private Set<Lek> lekovi = new HashSet<>();
+
+	@Column(name = "brojgodina")
+	private int brojgodina;
 	
+	@Column(name = "tezina")
+	private int tezina;
+	
+	@Column(name = "pol")
+	private String pol;		//Format : m / f;
+	
+	@Column(name = "rasa")
+	private String rasa; 	//Format : white / black / other;
 
 	public Pregled() {
 		super();
@@ -103,6 +114,37 @@ public class Pregled {
 		this.lekovi = lekovi;
 	}
 
-	
+	public int getBrojgodina() {
+		return brojgodina;
+	}
+
+	public void setBrojgodina(int brojgodina) {
+		this.brojgodina = brojgodina;
+	}
+
+	public int getTezina() {
+		return tezina;
+	}
+
+	public void setTezina(int tezina) {
+		this.tezina = tezina;
+	}
+
+	public String getPol() {
+		return pol;
+	}
+
+	public void setPol(String pol) {
+		this.pol = pol;
+	}
+
+	public String getRasa() {
+		return rasa;
+	}
+
+	public void setRasa(String rasa) {
+		this.rasa = rasa;
+	}
+
 	
 }

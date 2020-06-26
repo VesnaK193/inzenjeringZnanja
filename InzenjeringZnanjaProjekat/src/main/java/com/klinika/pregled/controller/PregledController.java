@@ -3,7 +3,6 @@ package com.klinika.pregled.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.klinika.pregled.cbrApplication.CBRModelTest;
 import com.klinika.pregled.cbrApplication.CBRService;
-import com.klinika.pregled.dto.CBRSimptomDTO;
-import com.klinika.pregled.dto.CBRTestDTO;
 import com.klinika.pregled.dto.SimptomiDTO;
 import com.klinika.pregled.dto.TestDTO;
 import com.klinika.pregled.model.Pacijent;
@@ -143,11 +140,24 @@ public class PregledController {
 		
 		CBRModelTest newModel = new CBRModelTest();
 		newModel.setSimptomi(cbrSimptomi);
+		newModel.setBrojgodina(pregled.getBrojgodina());
+		newModel.setPol(pregled.getPol());
+		newModel.setRasa(pregled.getRasa());
+		newModel.setTezina(pregled.getTezina());
+		
 		List<TestDTO> listat = CBRService.getTestMatches(newModel);
+		List<TestDTO> fiveTests = new ArrayList<>();
+		for(int i = 0; i < 5; i++) {
+			if(i < listat.size()) {
+				fiveTests.add(listat.get(i));
+			}else {
+				break;
+			}
+		}
 		
 		Pregled saved = preglediRepo.save(pregled);
 		
-		return new ResponseEntity<List<TestDTO>>(listat, HttpStatus.OK);
+		return new ResponseEntity<List<TestDTO>>(fiveTests, HttpStatus.OK);
 	}
 	
 	@PostMapping("rbr/{id}")
@@ -197,7 +207,16 @@ public class PregledController {
 			}
 		}
 		
-		return new ResponseEntity<List<TestDTO>>(testovi, HttpStatus.OK);
+		List<TestDTO> topFive = new ArrayList<>();
+		for(int i = 0; i < 5; i++) {
+			if( i < testovi.size()) {
+				topFive.add(testovi.get(i));
+			}else {
+				break;
+			}
+		}
+		
+		return new ResponseEntity<List<TestDTO>>(topFive, HttpStatus.OK);
 	}
 	
 	private Test findOneTest(String name) {

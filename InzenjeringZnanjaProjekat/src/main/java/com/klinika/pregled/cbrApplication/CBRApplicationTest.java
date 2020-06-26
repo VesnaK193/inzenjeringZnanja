@@ -17,6 +17,8 @@ import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNConfig;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
+import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Equal;
+import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Threshold;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 public class CBRApplicationTest implements StandardCBRApplication{
@@ -49,6 +51,10 @@ public class CBRApplicationTest implements StandardCBRApplication{
 		simConfig = new NNConfig();
 		simConfig.setDescriptionSimFunction(new Average());
 		
+		simConfig.addMapping(new Attribute("brojgodina", CBRModelTest.class), new Threshold(50));
+		simConfig.addMapping(new Attribute("tezina", CBRModelTest.class), new Threshold(50));
+		simConfig.addMapping(new Attribute("pol", CBRModelTest.class), new Equal());
+		simConfig.addMapping(new Attribute("rasa", CBRModelTest.class), new Equal());
 		simConfig.addMapping(new Attribute("simptomi", CBRModelTest.class), new TableSimilarity());
 	}
 
